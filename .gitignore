@@ -1,0 +1,14 @@
+/config/
+/page/lesson/2018b/
+/page/google-sheet/
+/page/SignUp.php
+/page/test.php
+/page/lesson/2019c/api/send_log_dev.php
+/page/lesson/2019c/bot_page/bot_dev.php
+/page/lesson/2019c/js/bot_dev.js
+/page/lesson/2019c/log/
+/page/lesson/2019c/movie_page/
+/page/lesson/2019c/csv_user_registrasion.php
+/page/lesson/2019c/csv_user_registrasion2.php
+*.csv
+*.txt

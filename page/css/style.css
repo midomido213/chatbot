@@ -1,0 +1,13 @@
+/* html{
+  height: 200%;
+} */
+
+div.title{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+body.background{
+  background-image: url(../images/cover2019c.png);
+  position: relative;
+}
