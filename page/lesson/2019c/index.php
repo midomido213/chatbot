@@ -92,8 +92,8 @@ $errorMessage = '';
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第９回振り返り（回答終了）</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第１０回振り返り（回答終了）</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第１１回振り返り（回答終了）</button></li>
-              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/12.php'">第１２回振り返り</button></li>
-              <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第１３回振り返り（未公開）</button></li>
+              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第１２回振り返り（回答終了）</button></li>
+              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/13.php'">第１３回振り返り</button></li>
               <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href='#'">第１４回振り返り（未公開）</button></li>
             </ul>
           </div>

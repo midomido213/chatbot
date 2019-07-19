@@ -62,7 +62,7 @@ try{
           <div class="uk-card uk-card-default uk-card-body">
             <h3>チャットログ閲覧ページ（β）</h3>
             <div>
-              <h4>第１２回チャットログ表示中</h4>
+              <h4>第１３回チャットログ表示中</h4>
               <p>TAは自分のグループのチャットログを見て，補足説明してほしい学生がいたら対応してみてください．</p>
               <p>理解度は，０（デフォルト値：問題なし），１（全く分からない），２（少し分からない），３（少し分かる），４（結構分かる）となってます．</p>
               <p>特に理解度が１と２になっている学生のログを見て声をかけてみてください．</p>
@@ -83,10 +83,10 @@ try{
               try{
                 $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                $stmt = $pdo->query('SELECT * FROM chatLog INNER JOIN groupData ON chatLog.name = groupData.userName ORDER BY groupId ASC');
+                $stmt = $pdo->query('SELECT * FROM chatLog INNER JOIN groupData ON chatLog.name = groupData.userName WHERE level != 0 ORDER BY groupId ASC');
 
                 while ($row = $stmt->fetch()) {
-                  if($row['lesson'] == 12){
+                  if($row['lesson'] == 13){
                     echo '<tr>';
                     // echo '<th>';
                     // echo $row['id'];
