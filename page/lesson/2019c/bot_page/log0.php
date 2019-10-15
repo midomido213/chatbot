@@ -63,31 +63,31 @@ try{
             <h3>チャットログ閲覧ページ（β）</h3>
             <div>
               <div>
-                <form action="log.php" method="post">
-                  <label>授業回：</label>
+                <form action="log0.php" method="post">
+                  <p>授業回：</p>
                   <select name="lesson" size="1">
                     <option value="12">12</option>
                     <option value="13">13</option>
                     <option value="14">14</option>
                   </select>
-                  <label>グループ：</label>
+                  <p>グループ：</p>
                   <select name="group" size="1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                    <option value="1">1<option>
+                    <option value="2">2<option>
+                    <option value="3">3<option>
+                    <option value="4">4<option>
+                    <option value="5">5<option>
+                    <option value="6">6<option>
+                    <option value="7">7<option>
+                    <option value="8">8<option>
+                    <option value="9">9<option>
+                    <option value="10">10<option>
                   </select>
                   <input type="submit" value="表示"/>
                 </form>
               </div>
               <div>
-                <p> </p>
+                <?php echo var_dump($groupId); echo var_dump($lesson);?>
                 <p>TAは自分のグループのチャットログを見て，補足説明してほしい学生がいたら対応してみてください．</p>
                 <p>理解度は，０（デフォルト値：問題なし），１（全く分からない），２（少し分からない），３（少し分かる），４（結構分かる）となってます．</p>
                 <p>特に理解度が１と２になっている学生のログを見て声をかけてみてください．</p>
