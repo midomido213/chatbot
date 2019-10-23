@@ -84,30 +84,31 @@ $errorMessage = '';
             <ul class="uk-list">
               <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/bot_test.php'">チャットボットお試しページ（動作確認用）</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第２回振り返り</button></li>
-              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/3.php'">第３回振り返り</button></li>
+              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第３回振り返り</button></li>
+              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/4.php'">第４回振り返り</button></li>
             </ul>
           </div>
         </div>
       </section>
 
       <?php
-      // $name = $_SESSION['NAME'];
-      // $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-      // try{
-      //   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-      //   $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
-      //   $stmt->execute(array($name));
-      //   $admin = $stmt->fetchColumn();
-      //   if($admin == 1){
-      //     echo '<!-- 管理者表示 --><section class="uk-section uk-section-xsmall"><div class="uk-container"><div class="uk-card uk-card-secondary uk-card-body"><h3>管理者限定表示</h3><ul class="uk-list">';
-      //     echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/log.php\'">チャットログ閲覧ページ（β版）</button></li>';
-      //     echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/bot_dev.php\'">チャットボット開発動作確認ページ</button></li>';
-      //     echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'#\'">ユーザー管理（準備中）</button></li>';
-      //     echo '</ul></div></div></section>';
-      //   }
-      // }catch(PDOException $e){
-      //   $errorMessage = 'エラーです';
-      // }
+      $name = $_SESSION['NAME'];
+      $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+      try{
+        $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+        $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
+        $stmt->execute(array($name));
+        $admin = $stmt->fetchColumn();
+        if($admin == 1){
+          echo '<!-- 管理者表示 --><section class="uk-section uk-section-xsmall"><div class="uk-container"><div class="uk-card uk-card-secondary uk-card-body"><h3>管理者限定表示</h3><ul class="uk-list">';
+          echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/log.php\'">チャットログ閲覧ページ</button></li>';
+          // echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/bot_dev.php\'">チャットボット開発動作確認ページ</button></li>';
+          // echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'#\'">ユーザー管理（準備中）</button></li>';
+          echo '</ul></div></div></section>';
+        }
+      }catch(PDOException $e){
+        $errorMessage = 'エラーです';
+      }
 
       ?>
 
