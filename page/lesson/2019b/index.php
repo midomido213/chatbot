@@ -86,7 +86,8 @@ $errorMessage = '';
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第２回振り返り</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第３回振り返り</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第４回振り返り</button></li>
-              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/5.php'">第５回振り返り</button></li>
+              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第５回振り返り</button></li>
+              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/6.php'">第６回振り返り</button></li>
             </ul>
           </div>
         </div>

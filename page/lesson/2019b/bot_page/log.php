@@ -66,12 +66,14 @@ try{
                 <form action="log.php" method="post">
                   <label>授業回：</label>
                   <select name="lesson" size="1">
+                    <option value="6">6</option>
+                    <option value="5">5</option>
                     <option value="4">4</option>
                     <option value="3">3</option>
                     <option value="2">2</option>
                   </select>
-                  <!-- <label>グループ：</label> -->
-                  <!-- <select name="group" size="1">
+                  <label>グループ：</label>
+                  <select name="group" size="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -82,7 +84,7 @@ try{
                     <option value="8">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
-                  </select> -->
+                  </select>
                   <input type="submit" value="表示"/>
                 </form>
               </div>
@@ -98,7 +100,7 @@ try{
                     <!-- <th>id</th> -->
                     <th width="5%">実施回</th>
                     <th width="5%">ユーザー名</th>
-                    <!-- <th width="5%">グループ</th> -->
+                    <th width="5%">グループ</th>
                     <th width="5%">理解度</th>
                     <th width="40%">ボットログ</th>
                     <th width="35%">ユーザーログ</th>
@@ -112,8 +114,8 @@ try{
                 try{
                   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                  $stmt = $pdo->prepare('SELECT * FROM chatLog INNER JOIN groupData ON chatLog.name = groupData.userName WHERE lesson = ? ORDER BY level DESC');
-                  $stmt->execute(array($lesson));
+                  $stmt = $pdo->prepare('SELECT * FROM chatLog INNER JOIN groupData2019b ON chatLog.name = groupData2019b.userName WHERE groupId = ? AND lesson = ? ORDER BY level DESC');
+                  $stmt->execute(array($groupId, $lesson));
 
                   while ($row = $stmt->fetch()) {
                     // if($row['lesson'] == 14){
@@ -127,9 +129,9 @@ try{
                       echo '<th>';
                       echo $row['name'];
                       echo '</th>';
-                      // echo '<th>';
-                      // echo $row['groupId'];
-                      // echo '</th>';
+                      echo '<th>';
+                      echo $row['groupId'];
+                      echo '</th>';
                       echo '<th>';
                       echo $row['level'];
                       echo '</th>';

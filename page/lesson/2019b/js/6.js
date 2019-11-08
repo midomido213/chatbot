@@ -16,7 +16,7 @@ var targetScore = 0;
 var actualScore = 0;
 var freeDescription = '';
 var level = 0;
-var lesson = 5;
+var lesson = 6;
 
 init();
 
@@ -304,9 +304,9 @@ function question1(){
   botui.message.add({
     delay:1000,
     loading:true,
-    content:'今回の予習は、組合せ①（組合せの公式，組み分け，同じものを含む順列，重複組合せ，二項定理）でした。'
+    content:'今回の予習は、組合せ②（組合わせの応用問題）でした。'
   }).then(function(){
-    log = '\r\n-----Q-----\r\n今回の予習は、組合せ①（組合せの公式，組み分け，同じものを含む順列，重複組合せ，二項定理）でした。\r\n';
+    log = '\r\n-----Q-----\r\n今回の予習は、組合せ②（組合わせの応用問題）でした。\r\n';
     add_log_bot(log);
     botui.message.add({
       delay:1000,
@@ -1123,5 +1123,4 @@ function quit(){
     });
   });
 }
-
 })();
