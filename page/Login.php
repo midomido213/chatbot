@@ -47,9 +47,9 @@ if (isset($_POST["login"])) {
                     foreach ($stmt as $row) {
                         $row['name'];  // ユーザー名
                     }
-                    $_SESSION["NAME"] = $row['name'];
+                    $_SESSION["userId"] = $row['name'];
 
-                    header("Location: https://takagi-lab.tk/chatbot/page/");  // メイン画面へ遷移
+                    header("Location: https://takagi-lab.tk/g031o008/plan/view/main/");  // メイン画面へ遷移
                     exit();  // 処理終了
                 } else {
                     // 認証失敗
@@ -76,7 +76,7 @@ if (isset($_POST["login"])) {
       <meta charset="UTF-8">
       <title>ログイン</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="lesson/2018b/css/form.css" />
+      <link rel="stylesheet" href="css/form.css" />
     </head>
     <body>
       <!-- ブラウザ判定 -->
@@ -106,7 +106,7 @@ if (isset($_POST["login"])) {
 
       <form id="loginForm" name="loginForm" action="" method="POST">
         <div class="form-wrapper">
-          <h1>情報基礎数学<br />振り返りシステム<br/>ログイン</h1>
+          <h1>情報基礎数学<br />学習計画・振り返りシステム<br/>ログイン</h1>
           <p>※共通基盤教育システムの初期ID，PWで設定しています．</P>
           <font color="#FF0000"><?php echo $errorMessage ?></font>
           <form>

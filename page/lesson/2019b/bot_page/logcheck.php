@@ -4,27 +4,27 @@ session_start();
 require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
 
 // ログイン状態チェック
-if (!isset($_SESSION["userId"])) {
+if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
     header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
     exit;
 }
 
 // 管理者以外を弾く
-// $name = $_SESSION['NAME'];
-// $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-// try{
-//   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-//   $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
-//   $stmt->execute(array($name));
-//   $admin = $stmt->fetchColumn();
-//
-//   if($admin != 1){
-//     header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
-//     exit;
-//   }
-// }catch(PDOException $e){
+$name = $_SESSION['NAME'];
+$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+try{
+  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+  $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
+  $stmt->execute(array($name));
+  $admin = $stmt->fetchColumn();
 
-// }
+  if($admin != 1){
+    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
+    exit;
+  }
+}catch(PDOException $e){
+
+}
 
 ?>
 
@@ -63,7 +63,7 @@ if (!isset($_SESSION["userId"])) {
             <h3>チャットログ閲覧ページ</h3>
             <div>
               <div>
-                <form action="log.php" method="post">
+                <form action="logcheck.php" method="post">
                   <label>授業回：</label>
                   <select name="lesson" size="1">
                     <option value="7">7</option>
@@ -74,7 +74,7 @@ if (!isset($_SESSION["userId"])) {
                     <option value="2">2</option>
                   </select>
                   <label>グループ：</label>
-                  <select name="group" size="1">
+                  <!-- <select name="group" size="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -85,7 +85,7 @@ if (!isset($_SESSION["userId"])) {
                     <option value="8">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
-                  </select>
+                  </select> -->
                   <input type="submit" value="表示"/>
                 </form>
               </div>
@@ -110,13 +110,13 @@ if (!isset($_SESSION["userId"])) {
                   </tr>
                 <?php
                 $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-                $groupId = $_POST['group'];
+                // $groupId = $_POST['group'];
                 $lesson = $_POST['lesson'];
                 try{
                   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                  $stmt = $pdo->prepare('SELECT * FROM chatLog INNER JOIN groupData2019b ON chatLog.name = groupData2019b.userName WHERE groupId = ? AND lesson = ? ORDER BY level DESC');
-                  $stmt->execute(array($groupId, $lesson));
+                  $stmt = $pdo->prepare('SELECT * FROM chatLog INNER JOIN groupData2019b ON chatLog.name = groupData2019b.userName WHERE lesson = ? ORDER BY level DESC');
+                  $stmt->execute(array($lesson));
 
                   while ($row = $stmt->fetch()) {
                     // if($row['lesson'] == 14){

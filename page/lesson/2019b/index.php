@@ -3,8 +3,8 @@ session_start();
 require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
 
 // ログイン状態チェック
-if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/");
+if (!isset($_SESSION["userId"])) {
+    header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
     exit;
 }
 
@@ -37,7 +37,7 @@ $errorMessage = '';
       <div class="title">
         <h3>情報基礎数学 チャットボットによる振り返りシステム</h3>
         <h3>２０１９年度 情報基礎数学Ｂ</h3>
-        <p><?php echo($_SESSION["NAME"]); ?> でログイン中</p>
+        <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
       </div>
 
       <!-- お知らせ -->
@@ -87,14 +87,15 @@ $errorMessage = '';
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第３回振り返り</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第４回振り返り</button></li>
               <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第５回振り返り</button></li>
-              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/6.php'">第６回振り返り</button></li>
+              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第６回振り返り</button></li>
+              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/7.php'">第７回振り返り</button></li>
             </ul>
           </div>
         </div>
       </section>
 
       <?php
-      $name = $_SESSION['NAME'];
+      $name = $_SESSION['userId'];
       $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
       try{
         $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
@@ -121,6 +122,7 @@ $errorMessage = '';
             <h3>その他　リンク</h3>
             <div>
               <ul class="uk-list">
+                <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="window.open('https://takagi-lab.tk/g031o008/plan/view/main/index.php', '_blank')">学習計画の作成</button></li>
                 <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="window.open('https://www.ipusoft-el.jp/mdl/', '_blank')">岩手県立大学Moodleへのリンク</button></li>
                 <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="window.open('https://solomon.uela.cloud/', '_blank')">共通基盤教育システムへのリンク</button></li>
                 <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='../../index.php'">トップページに戻る</button></li>

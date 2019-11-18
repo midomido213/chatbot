@@ -2,12 +2,12 @@
 session_start();
 
 // ログイン状態チェック
-if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
+if (!isset($_SESSION["userId"])) {
     header("Location: http://153.126.193.128/chatbot/page/Logout.php");
     exit;
 }
 
-$directory_path = "../log/" . $_SESSION["NAME"];
+$directory_path = "../log/" . $_SESSION["userId"];
 // if(file_exists($directory_path)){
 //     //存在したときの処理
 //     // echo "作成しようとしたディレクトリは既に存在します";
@@ -57,7 +57,7 @@ $directory_path = "../log/" . $_SESSION["NAME"];
     <section class="uk-section uk-dark uk-background-cover" style="background-image: url(images/cover.jpg)">
 
       <div class="title">
-        <p><?php echo($_SESSION["NAME"]); ?> でログイン中</p>
+        <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
       </div>
 
 

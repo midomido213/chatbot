@@ -2,7 +2,7 @@
 session_start();
 
 // ログイン状態チェック
-if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
+if (!isset($_SESSION["userId"])) {
     header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
     exit;
 }else{
@@ -15,7 +15,7 @@ if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
 date_default_timezone_set('Asia/Tokyo');
 
 $log = $_REQUEST['log'] . "\n";
-$pass = "../log/2019b6/" . $_SESSION["NAME"] . ".txt";
+$pass = "../log/2019b8/" . $_SESSION["NAME"] . ".txt";
 
 file_put_contents($pass, $log, FILE_APPEND | LOCK_EX);
 // readfile($pass);

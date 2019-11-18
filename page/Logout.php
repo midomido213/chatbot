@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["NAME"])) {
+if (isset($_SESSION["userId"])) {
     $errorMessage = "ログアウトしました。３秒後にログインページにジャンプします。";
 } else {
     $errorMessage = "セッションがタイムアウトしました。３秒後にログインページにジャンプします。";

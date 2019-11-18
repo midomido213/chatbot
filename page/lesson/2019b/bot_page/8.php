@@ -7,7 +7,7 @@ if (!isset($_SESSION["userId"])) {
     exit;
 }
 
-$directory_path = "../log/" . $_SESSION["NAME"];
+$directory_path = "../log/" . $_SESSION["userId"];
 // if(file_exists($directory_path)){
 //     //存在したときの処理
 //     // echo "作成しようとしたディレクトリは既に存在します";
@@ -25,7 +25,7 @@ $directory_path = "../log/" . $_SESSION["NAME"];
 // }
 
 // ログ用ファイル作成
-$filename = '../log/2019b2/' . $_SESSION["NAME"] . '.txt';
+$filename = '../log/2019b8/' . $_SESSION["userId"] . '.txt';
 // var_dump($filename);
 if(file_exists($filename)){
 
@@ -60,7 +60,7 @@ date_default_timezone_set('Asia/Tokyo');
     <section class="uk-section uk-dark uk-background-cover">
 
       <div class="title">
-        <p><?php echo($_SESSION["NAME"]); ?> でログイン中</p>
+        <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
       </div>
 
 
@@ -68,11 +68,11 @@ date_default_timezone_set('Asia/Tokyo');
       <section class="uk-section uk-section-xsmall">
         <div class="uk-container">
           <div class="uk-card uk-card-default uk-card-body">
-            <h3>第２回 事前学習振り返りページ</h3>
+            <h3>第８回 事前学習振り返りページ</h3>
               <div class="botui-app-container" id="chat-app">
               <!-- チャットの表示  -->
-              <!-- <bot-ui></bot-ui> -->
-              <p>回答期間外です．</P>
+              <bot-ui></bot-ui>
+              <!-- <p>不正なアクセスです</P> -->
             </div>
           </div>
         </div>
@@ -99,7 +99,27 @@ date_default_timezone_set('Asia/Tokyo');
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
     <script src="../js/botui.min.js"></script>
-    <script src="../js/2.js"></script>
+    <script src="../js/8.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script>
+      //ページを離れる時の処理として実施：
+      window.onunload = function(){
+        var = capture_chat = "../api/capture_chat.php";
+        //HTML内に画像を表示
+        html2canvas(document.getElementById("chat-app"),{
+          onrendered: function(canvas){
+            //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
+            var imgData = canvas.toDataURL();
+            // document.getElementById("result").src = imgData;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', capture_chat, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('capture=' + imgData);
+          }
+        });
+      }
+      </script>
 
   </body>
 </html>

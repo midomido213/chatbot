@@ -2,7 +2,7 @@
 session_start();
 
 // ログイン状態チェック
-if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
+if (!isset($_SESSION["userId"])) {
     header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
     exit;
 }
@@ -71,8 +71,8 @@ date_default_timezone_set('Asia/Tokyo');
             <h3>第４回 事前学習振り返りページ</h3>
               <div class="botui-app-container" id="chat-app">
               <!-- チャットの表示  -->
-              <bot-ui></bot-ui>
-              <!-- <p>不正なアクセスです</P> -->
+              <!-- <bot-ui></bot-ui> -->
+              <p>回答期間外です．</P>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@
 session_start();
 
 // ログイン状態チェック
-if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
+if (!isset($_SESSION["userId"])) {
     header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
     exit;
 }
@@ -31,7 +31,7 @@ if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
 
       <div class="title">
         <h3>情報基礎数学 チャットボットによる振り返りシステム</h3>
-        <p><?php echo($_SESSION["NAME"]); ?> でログイン中</p>
+        <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
       </div>
 
       <!-- お知らせ -->
