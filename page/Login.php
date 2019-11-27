@@ -49,7 +49,11 @@ if (isset($_POST["login"])) {
                     }
                     $_SESSION["userId"] = $row['name'];
 
-                    header("Location: https://takagi-lab.tk/g031o008/plan/view/main/");  // メイン画面へ遷移
+                    if($row['admin'] == 1){
+                      header("Location: https://takagi-lab.tk/chatbot/admin/");
+                    }else{
+                      header("Location: https://takagi-lab.tk/g031o008/plan/view/main/");  // メイン画面へ遷移
+                    }
                     exit();  // 処理終了
                 } else {
                     // 認証失敗

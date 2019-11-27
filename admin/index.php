@@ -8,6 +8,23 @@ if (!isset($_SESSION["userId"])) {
     exit;
 }
 
+// 管理者以外を弾く
+$name = $_SESSION['userId'];
+$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+try{
+  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+  $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
+  $stmt->execute(array($name));
+  $admin = $stmt->fetchColumn();
+
+  if($admin != 1){
+    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
+    exit;
+  }
+}catch(PDOException $e){
+
+}
+
 $errorMessage = '';
 
 ?>
@@ -21,7 +38,7 @@ $errorMessage = '';
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
 
     <!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
@@ -46,8 +63,9 @@ $errorMessage = '';
           <div class="uk-card uk-card-default uk-card-body">
             <h3>お知らせ</h3>
             <p>システムにアクセスありがとうございます．</p>
-            <p>初めに動作確認ページでチャット画面が表示されるか確認してみてください．</p>
-            <p>何か分からないことがあれば，近くのTA/SAに遠慮なく質問してください．</p>
+            <p>TA・SAはチャットログを確認し，必要に応じて個別対応をお願いします．</p>
+            <p>何か分からないことがあれば，小菅まで問い合わせください．</p>
+            <p>g231r010@s.iwate-pu.ac.jp</p>
             <!-- ブラウザ判定 -->
             <?php
             // 判定するのに小文字にする
@@ -77,24 +95,6 @@ $errorMessage = '';
       </section>
 
       <!-- メイン表示部分 -->
-      <section class="uk-section uk-section-xsmall">
-        <div class="uk-container">
-          <div class="uk-card uk-card-default uk-card-body">
-            <h3>振り返り授業回 選択</h3>
-            <ul class="uk-list">
-              <li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/bot_test.php'">チャットボットお試しページ（動作確認用）</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第２回振り返り</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第３回振り返り</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第４回振り返り</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第５回振り返り</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第６回振り返り</button></li>
-              <li><button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" onclick="#">第７回振り返り</button></li>
-              <li><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='bot_page/8.php'">第８回振り返り</button></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <?php
       $name = $_SESSION['userId'];
       $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
@@ -105,7 +105,7 @@ $errorMessage = '';
         $admin = $stmt->fetchColumn();
         if($admin == 1){
           echo '<!-- 管理者表示 --><section class="uk-section uk-section-xsmall"><div class="uk-container"><div class="uk-card uk-card-secondary uk-card-body"><h3>管理者限定表示</h3><ul class="uk-list">';
-          echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/log.php\'">チャットログ閲覧ページ</button></li>';
+          echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'https://takagi-lab.tk/chatbot/admin/log/\'">チャットログ閲覧ページ</button></li>';
           // echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'bot_page/bot_dev.php\'">チャットボット開発動作確認ページ</button></li>';
           // echo '<li><button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" onclick="location.href=\'#\'">ユーザー管理（準備中）</button></li>';
           echo '</ul></div></div></section>';

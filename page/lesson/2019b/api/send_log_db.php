@@ -13,7 +13,7 @@ if (!isset($_SESSION["userId"])) {
 
 date_default_timezone_set('Asia/Tokyo');
 
-$name = $_SESSION['NAME'];
+$name = $_SESSION['userId'];
 $lesson = $_POST['lesson'];
 $level = $_POST['level'];
 $log_all = $_POST['log_all'];

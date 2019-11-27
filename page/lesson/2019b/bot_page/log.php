@@ -10,21 +10,21 @@ if (!isset($_SESSION["userId"])) {
 }
 
 // 管理者以外を弾く
-// $name = $_SESSION['NAME'];
-// $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-// try{
-//   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-//   $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
-//   $stmt->execute(array($name));
-//   $admin = $stmt->fetchColumn();
-//
-//   if($admin != 1){
-//     header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
-//     exit;
-//   }
-// }catch(PDOException $e){
+$name = $_SESSION['userId'];
+$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+try{
+  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+  $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
+  $stmt->execute(array($name));
+  $admin = $stmt->fetchColumn();
 
-// }
+  if($admin != 1){
+    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
+    exit;
+  }
+}catch(PDOException $e){
+
+}
 
 ?>
 
@@ -66,6 +66,7 @@ if (!isset($_SESSION["userId"])) {
                 <form action="log.php" method="post">
                   <label>授業回：</label>
                   <select name="lesson" size="1">
+                    <option value="8">8</option>
                     <option value="7">7</option>
                     <option value="6">6</option>
                     <option value="5">5</option>
