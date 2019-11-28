@@ -31,11 +31,16 @@ try{
 $comment = $_POST['comment'];
 $student = $_POST['student'];
 $ta = $_POST['ta'];
+$chatId = $_POST['chatId'];
 try{
   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
   $stmt = $pdo->prepare('INSERT INTO taComment (student, ta, comment) VALUES (?, ?, ?)');
   $stmt->execute(array($student, $ta, $comment));
+  $stmt = $pdo->prepare('UPDATE chatLog SET support = 1 where id = ?');
+  $stmt->execute(array($chatId));
+
+  $alert = '<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>TA/SA 対応状況の登録が完了しました。</p><p>対応済みに変更しました。</p></div>';
 }catch(PDOException $e){
 
 }
@@ -51,7 +56,7 @@ try{
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
-      <!-- <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/table.css" /> -->
+      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/table.css" />
 
       <!-- UIkit CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
@@ -68,6 +73,7 @@ try{
         <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
       </div>
 
+      <?php echo $alert ?>
 
       <!-- メイン表示部分 -->
       <section class="uk-section uk-section-xsmall">
@@ -81,6 +87,7 @@ try{
                     <label class="uk-form-label" for="form-horizontal-select">授業回：</label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="form-horizontal-select" name="lesson">
+                        <option value="9">9</option>
                         <option value="8">8</option>
                         <option value="7">7</option>
                         <option value="6">6</option>
@@ -127,12 +134,12 @@ try{
                 try{
                   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                  $stmt = $pdo->prepare('SELECT * FROM chatLog INNER JOIN groupData2019b ON chatLog.name = groupData2019b.userName WHERE groupId = ? AND lesson = ? ORDER BY level DESC');
+                  $stmt = $pdo->prepare('SELECT chatLog.id AS id, chatLog.name AS name, chatLog.lesson AS lesson, chatLog.level AS level, chatLog.logAll AS logAll, chatLog.support AS support, chatLog.timestamp AS timestamp, groupData2019b.userName AS name, groupData2019b.groupId AS groupId FROM chatLog INNER JOIN groupData2019b ON groupData2019b.userName = chatLog.name  WHERE groupId = ? AND lesson = ? ORDER BY level DESC');
                   $stmt->execute(array($groupId, $lesson));
 
                   while ($row = $stmt->fetch()) {
               ?>
-              <table class="uk-table uk-table-divider">
+              <table class="uk-table uk-table-divider waku">
               	<tbody>
               		<tr>
               			<th colspan="2"  width="15%">
@@ -144,20 +151,23 @@ try{
                         }
                       ?>
                     </th>
-              			<th  width="30%">ボットログ</th>
-              			<th  width="5%">ユーザーログ</th>
+              			<th  width="30%">チャットログ</th>
+              			<!-- <th  width="5%">ユーザーログ</th> -->
               			<th  width="15%">TA/SA入力部分</th>
               		</tr>
               		<tr>
               			<th>授業回</th>
               			<th><?php echo $row['lesson'] . '回'; ?></th>
-              			<td rowspan="5"><?php echo nl2br($row['logBot']); ?></td>
-              			<td rowspan="5"><?php echo nl2br($row['logHuman']); ?></td>
+              			<td rowspan="5"><?php echo nl2br($row['logAll']); ?></td>
+              			<!-- <td rowspan="5"><?php //echo nl2br($row['logHuman']); ?></td> -->
               			<td rowspan="5">
                       <form action="index.php" method="post">
-                        <textarea class="uk-textarea" name="comment"></textarea>
+                        <textarea class="uk-textarea" name="comment" rows="10"></textarea>
                         <input type="hidden" name="student" value="<?php echo $row['name']; ?>"/>
                         <input type="hidden" name="ta" value="<?php echo $_SESSION['userId']; ?>"/>
+                        <input type="hidden" name="lesson" value="<?php echo $lesson; ?>"/>
+                        <input type="hidden" name="group" value="<?php echo $groupId; ?>"/>
+                        <input type="hidden" name="chatId" value="<?php echo $row['id']; ?>"/>
                         <button class="uk-button uk-button-default" type="submit">登録</button>
                       </form>
                     </td>

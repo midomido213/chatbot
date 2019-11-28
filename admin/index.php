@@ -18,7 +18,7 @@ try{
   $admin = $stmt->fetchColumn();
 
   if($admin != 1){
-    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
+    header("Location: https://takagi-lab.tk//chatbot/page/Login.php");
     exit;
   }
 }catch(PDOException $e){
@@ -46,9 +46,6 @@ $errorMessage = '';
 
   </head>
   <body class="background">
-    <!-- 通知 -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.9/push.min.js"></script>
-
     <section class="uk-section uk-dark uk-background-cover">
 
       <div class="title">

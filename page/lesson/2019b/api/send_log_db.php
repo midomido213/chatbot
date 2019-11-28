@@ -19,6 +19,7 @@ $level = $_POST['level'];
 $log_all = $_POST['log_all'];
 $log_bot = $_POST['log_bot'];
 $log_human = $_POST['log_human'];
+$support = 0;
 
 $errorMessage = '';
 
@@ -26,8 +27,8 @@ $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbna
 try{
   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO chatLog (name, lesson, level, logAll, logBot, logHuman) VALUES (?, ?, ?, ?, ?, ?)');
-  $stmt->execute([$name, $lesson, $level, $log_all, $log_bot, $log_human]);
+  $stmt = $pdo->prepare('INSERT INTO chatLog (name, lesson, level, logAll, logBot, logHuman, support) VALUES (?, ?, ?, ?, ?, ?, ?)');
+  $stmt->execute([$name, $lesson, $level, $log_all, $log_bot, $log_human, $support]);
 }catch(PDOException $e){
   $errorMessage = 'エラーです';
 }

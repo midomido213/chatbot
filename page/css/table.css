@@ -1,1 +1,23 @@
-th,td{display : block;}
+p.bot{
+  background-color: #ebebeb;
+  text-align: left;
+  margin-right: 350px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+p.human{
+  background-color: #7cf717;
+  text-align: right;
+  margin-left: 350px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+table.waku{
+  border: 3px solid #e0e0e0;
+}
+
+textarea{
+  resize: vertical;
+}
