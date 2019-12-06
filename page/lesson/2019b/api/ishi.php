@@ -15,11 +15,12 @@ date_default_timezone_set('Asia/Tokyo');
 
 $userId = $_SESSION['userId'];
 // $coverage = $_POST['lesson'];
-$classDate = new DateTime('2019-11-28 00:00:00', new DateTimeZone('Asia/Tokyo'));
+$classDate = new DateTime('2019-12-05 00:00:00', new DateTimeZone('Asia/Tokyo'));
 $classDate = $classDate->format('U');
 $classDate .= "000";
 $goal = $_POST['targetScore'];
 $testScore = $_POST['actualScore'];
+$satisfaction = $_POST['satisfaction'];
 // $freeDescription = $_POST['freeDescription'];
 
 $errorMessage = '';
@@ -28,8 +29,8 @@ $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $ishi['host'], $ishi['
 try{
   $pdo = new PDO($dsn, $ishi['user'], $ishi['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO chatbot (userId, classDate, goal, testScore) VALUES (?, ?, ?, ?)');
-  $stmt->execute([$userId, $classDate, $goal, $testScore]);
+  $stmt = $pdo->prepare('INSERT INTO chatbot (userId, classDate, goal, testScore, satisfaction) VALUES (?, ?, ?, ?, ?)');
+  $stmt->execute([$userId, $classDate, $goal, $testScore, $satisfaction]);
 }catch(PDOException $e){
   $errorMessage = 'エラーです';
 }
@@ -37,6 +38,5 @@ try{
 <!DOCTYPE html>
 <html>
 <body>
-  <?php echo $classDate ?>
 </body>
 </html>

@@ -87,6 +87,7 @@ try{
                     <label class="uk-form-label" for="form-horizontal-select">授業回：</label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="form-horizontal-select" name="lesson">
+                        <option value="10">10</option>
                         <option value="9">9</option>
                         <option value="8">8</option>
                         <option value="7">7</option>
@@ -102,7 +103,6 @@ try{
                     <label class="uk-form-label" for="form-horizontal-select">グループ：</label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="form-horizontal-select" name="group">
-                        <option value="0">0(テスト用)</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -113,6 +113,7 @@ try{
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
+                        <option value="0">0(テスト用)</option>
                       </select>
                     </div>
                   </div>
@@ -122,7 +123,11 @@ try{
               <div>
                 <p> </p>
                 <p>TAは自分のグループのチャットログを見て，補足説明してほしい学生がいたら対応してみてください．</p>
-                <p>理解度は，０（デフォルト値：問題なし），１（全く分からない），２（少し分からない），３（少し分かる），４（結構分かる）となってます．</p>
+                <p>理解度は，<span class="level0">０（デフォルト値：問題なし）</span>，
+                  <span class="level1">１（全く分からない）</span>，
+                  <span class="level2">２（少し分からない）</span>，
+                  <span class="level3">３（少し分かる）</span>，
+                  <span class="level4">４（結構分かる）</span>となってます．</p>
                 <p>特に理解度が１と２になっている学生のログを見て声をかけてみてください．</p>
               </div>
 
@@ -134,12 +139,12 @@ try{
                 try{
                   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                  $stmt = $pdo->prepare('SELECT chatLog.id AS id, chatLog.name AS name, chatLog.lesson AS lesson, chatLog.level AS level, chatLog.logAll AS logAll, chatLog.support AS support, chatLog.timestamp AS timestamp, groupData2019b.userName AS name, groupData2019b.groupId AS groupId FROM chatLog INNER JOIN groupData2019b ON groupData2019b.userName = chatLog.name  WHERE groupId = ? AND lesson = ? ORDER BY level DESC');
+                  $stmt = $pdo->prepare('SELECT chatLog.id AS id, chatLog.name AS name, chatLog.lesson AS lesson, chatLog.level AS level, chatLog.logAll AS logAll, chatLog.support AS support, chatLog.timestamp AS timestamp, groupData2019b.userName AS name, groupData2019b.groupId AS groupId FROM chatLog INNER JOIN groupData2019b ON groupData2019b.userName = chatLog.name  WHERE groupId = ? AND lesson = ? ORDER BY level > 0 DESC, level ASC');
                   $stmt->execute(array($groupId, $lesson));
 
                   while ($row = $stmt->fetch()) {
               ?>
-              <table class="uk-table uk-table-divider waku">
+              <table class="uk-table uk-table-divider level<?php echo $row['level']; ?>">
               	<tbody>
               		<tr>
               			<th colspan="2"  width="15%">
@@ -207,10 +212,6 @@ try{
       </section>
 
     </section>
-
-    <!-- <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
-    <script src="../js/botui.min.js"></script>
-    <script src="../js/bot_dev.js"></script> -->
 
   </body>
 </html>

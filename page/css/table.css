@@ -14,8 +14,48 @@ p.human{
   border-radius: 5px;
 }
 
-table.waku{
+/* table.waku{
   border: 3px solid #e0e0e0;
+} */
+
+table.level0{
+  border: 8px solid #1dd1a1;
+}
+
+table.level1{
+  border: 8px solid #ee5253;
+}
+
+table.level2{
+  border: 8px solid #ff6b6b;
+}
+
+table.level3{
+  border: 8px solid #feca57;
+}
+
+table.level4{
+  border: 8px solid #48dbfb;
+}
+
+span.level0{
+  background-color: #1dd1a1;
+}
+
+span.level1{
+  background-color: #ee5253;
+}
+
+span.level2{
+  background-color: #ff6b6b;
+}
+
+span.level3{
+  background-color: #feca57;
+}
+
+span.level4{
+  background-color: #48dbfb;
 }
 
 textarea{
