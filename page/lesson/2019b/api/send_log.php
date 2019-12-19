@@ -15,7 +15,7 @@ if (!isset($_SESSION["userId"])) {
 date_default_timezone_set('Asia/Tokyo');
 
 $log = $_REQUEST['log'] . "\n";
-$pass = "../log/2019b11/" . $_SESSION["NAME"] . ".txt";
+$pass = "../log/2019b12/" . $_SESSION["userId"] . ".txt";
 
 file_put_contents($pass, $log, FILE_APPEND | LOCK_EX);
 // readfile($pass);
