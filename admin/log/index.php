@@ -87,6 +87,7 @@ try{
                     <label class="uk-form-label" for="form-horizontal-select">授業回：</label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="form-horizontal-select" name="lesson">
+                        <option value="113">13</option>
                         <option value="112">12</option>
                         <option value="11">11</option>
                         <option value="10">10</option>
