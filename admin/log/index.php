@@ -119,7 +119,7 @@ try{
                       </select>
                     </div>
                   </div>
-                  <button class="uk-button uk-button-default" type="submit">表示</button>
+                  <button class="uk-button uk-button-danger uk-button-large" type="submit">チャットログを表示</button>
                 </form>
               </div>
               <div>
@@ -207,7 +207,7 @@ try{
 
 
             <div>
-              <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onclick="location.href='../'">戻る</button>
+              <button class="uk-button uk-button-default uk-margin-small-bottom" onclick="location.href='../'">戻る</button>
             </div>
           </div>
         </div>
