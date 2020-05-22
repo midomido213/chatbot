@@ -124,8 +124,8 @@ date_default_timezone_set('Asia/Tokyo');
         <article class="box media">
            <div class="media-content">
               <div class="content">
-                 <p><strong>TIPS</strong></p>
-                 <p>準備中</p>
+                 <p><strong>前のページに戻る</strong></p>
+                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/g031o008/plan/view/main/index.php'">こちらをクリック</button>
               </div>
            </div>
         </article>
