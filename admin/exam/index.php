@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
+
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
     header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
@@ -17,14 +19,32 @@ try{
   $admin = $stmt->fetchColumn();
 
   if($admin != 1){
-    header("Location: https://takagi-lab.tk//chatbot/page/Login.php");
+    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
     exit;
   }
 }catch(PDOException $e){
 
 }
 
-date_default_timezone_set('Asia/Tokyo');
+
+//DB登録処理
+$comment = $_POST['comment'];
+$student = $_POST['student'];
+$ta = $_POST['ta'];
+$chatId = $_POST['chatId'];
+try{
+  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+
+  $stmt = $pdo->prepare('INSERT INTO taComment (student, ta, comment) VALUES (?, ?, ?)');
+  $stmt->execute(array($student, $ta, $comment));
+  $stmt = $pdo->prepare('UPDATE chatLog SET support = 1 where id = ?');
+  $stmt->execute(array($chatId));
+
+  $alert = '<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>TA/SA 対応状況の登録が完了しました。</p><p>対応済みに変更しました。</p></div>';
+}catch(PDOException $e){
+
+}
+
 ?>
 
 <!doctype html>
@@ -38,10 +58,14 @@ date_default_timezone_set('Asia/Tokyo');
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
+      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/table.css" />
 
       <!-- BULMA CDN -->
       <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+      <!-- BULMA JS -->
+      <script src="https://cdn.jsdelivr.net/npm/vue-bulma-accordion@0.4.8/dist/vue-bulma-accordion.umd.min.js"></script>
+
   </head>
   <body>
     <!-- header -->
@@ -66,6 +90,7 @@ date_default_timezone_set('Asia/Tokyo');
       <div class="hero-body">
         <div class="container">
           <h1 class="title">情報基礎数学 計画/振り返りシステム 管理画面</h1>
+          <h2 class="subtitle">＠確認テスト・再テスト 点数確認ページ</h2>
         </div>
       </div>
     </div>
@@ -75,8 +100,8 @@ date_default_timezone_set('Asia/Tokyo');
       <div class="submenu column is-3">
         <!-- side bar -->
         <aside class="box">
-          <p>TA/SA/教員用管理ページです。</p>
-          <p>通常の学生は、学習計画の作成ページに遷移します。</p>
+          <p>各学生のテストデータを閲覧できるページです。</p>
+          <p>参考にし、個別指導を行ってください。</p>
         </aside>
         <aside class="box menu">
            <p class="menu-label">
@@ -91,14 +116,19 @@ date_default_timezone_set('Asia/Tokyo');
  　　　</div>
       <div class="column">
         <article class="box media">
-          <div class="media-content">
-            <p><strong>管理者限定表示</strong></p>
-            <ul class="menu-list">
-                <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>
-                <li><a href="#">チャットログ閲覧ページ（準備中）</a></li>
-                <li><a href="#">ユーザー管理（準備中）</a></li>
-             </ul>
-          </div>
+           <div class="media-content">
+              <div class="content">
+                <p><strong>確認画面</strong></p>
+              </div>
+           </div>
+        </article>
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
+                 <p><strong>前のページに戻る</strong></p>
+                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/g031o008/plan/view/main/index.php'">こちらをクリック</button>
+              </div>
+           </div>
         </article>
 　　　 </div>
 　　 </main>
@@ -112,5 +142,7 @@ date_default_timezone_set('Asia/Tokyo');
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="../js/bulma-accordion.js"></script>
+
   </body>
-</html>

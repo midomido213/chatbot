@@ -53,168 +53,131 @@ try{
     <meta charset="utf-8">
       <title>情報基礎数学botのページ</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="stylesheet" href="../css/botui.min.css" />
+      <link rel="stylesheet" href="../css/botui-theme-origin.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
       <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/table.css" />
 
-      <!-- UIkit CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
+      <!-- BULMA CDN -->
+      <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+      <!-- BULMA JS -->
+      <script src="https://cdn.jsdelivr.net/npm/vue-bulma-accordion@0.4.8/dist/vue-bulma-accordion.umd.min.js"></script>
 
-      <!-- UIkit JS -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
   </head>
-  <body class="background">
-
-    <section class="uk-section uk-dark uk-background-cover">
-
-      <div class="title">
-        <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
+  <body>
+    <!-- header -->
+    <header class="navbar">
+      <div class="navbar-brand">
+          <span class="navbar-item">
+              <span class="fas fa-robot"></span>チャットボットを利用した振り返り
+          </span>
       </div>
-
-      <?php echo $alert ?>
-
-      <!-- メイン表示部分 -->
-      <section class="uk-section uk-section-xsmall">
-        <div class="uk-container uk-container-large">
-          <div class="uk-card uk-card-default uk-card-body uk-card-small">
-            <h3>チャットログ閲覧ページ</h3>
-            <div>
-              <div>
-                <form class="uk-form-horizontal" action="index.php" method="post">
-                  <div class="uk-margin">
-                    <label class="uk-form-label" for="form-horizontal-select">授業回：</label>
-                    <div class="uk-form-controls">
-                      <select class="uk-select" id="form-horizontal-select" name="lesson">
-                        <option value="113">13</option>
-                        <option value="112">12</option>
-                        <option value="11">11</option>
-                        <option value="10">10</option>
-                        <option value="9">9</option>
-                        <option value="8">8</option>
-                        <option value="7">7</option>
-                        <option value="6">6</option>
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="uk-margin">
-                    <label class="uk-form-label" for="form-horizontal-select">グループ：</label>
-                    <div class="uk-form-controls">
-                      <select class="uk-select" id="form-horizontal-select" name="group">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="0">0(テスト用)</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button class="uk-button uk-button-danger uk-button-large" type="submit">チャットログを表示</button>
-                </form>
-              </div>
-              <div>
-                <p> </p>
-                <p>TAは自分のグループのチャットログを見て，補足説明してほしい学生がいたら対応してみてください．</p>
-                <p>理解度は，<span class="level0">０（デフォルト値：問題なし）</span>，
-                  <span class="level1">１（全く分からない）</span>，
-                  <span class="level2">２（少し分からない）</span>，
-                  <span class="level3">３（少し分かる）</span>，
-                  <span class="level4">４（結構分かる）</span>となってます．</p>
-                <p>特に理解度が１と２になっている学生のログを見て声をかけてみてください．</p>
-              </div>
-
-            <div>
-              <?php
-                $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-                $groupId = $_POST['group'];
-                $lesson = $_POST['lesson'];
-                try{
-                  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-
-                  $stmt = $pdo->prepare('SELECT chatLog.id AS id, chatLog.name AS name, chatLog.lesson AS lesson, chatLog.level AS level, chatLog.logAll AS logAll, chatLog.support AS support, chatLog.timestamp AS timestamp, groupData2019b.userName AS name, groupData2019b.groupId AS groupId FROM chatLog INNER JOIN groupData2019b ON groupData2019b.userName = chatLog.name  WHERE groupId = ? AND lesson = ? ORDER BY level > 0 DESC, level ASC');
-                  $stmt->execute(array($groupId, $lesson));
-
-                  while ($row = $stmt->fetch()) {
-              ?>
-              <table class="uk-table uk-table-divider level<?php echo $row['level']; ?>">
-              	<tbody>
-              		<tr>
-              			<th colspan="2"  width="15%">
-                      <?php
-                        if($row['support'] == 1){
-                          echo '<span class="uk-label uk-label-success">対応済</span>';
-                        }else{
-                          echo '<span class="uk-label uk-label-warning">未対応</span>';
-                        }
-                      ?>
-                    </th>
-              			<th  width="30%">チャットログ</th>
-              			<!-- <th  width="5%">ユーザーログ</th> -->
-              			<th  width="15%">TA/SA入力部分</th>
-              		</tr>
-              		<tr>
-              			<th>授業回</th>
-              			<th><?php echo $row['lesson'] . '回'; ?></th>
-              			<td rowspan="5"><?php echo nl2br($row['logAll']); ?></td>
-              			<!-- <td rowspan="5"><?php //echo nl2br($row['logHuman']); ?></td> -->
-              			<td rowspan="5">
-                      <form action="index.php" method="post">
-                        <textarea class="uk-textarea" name="comment" rows="10"></textarea>
-                        <input type="hidden" name="student" value="<?php echo $row['name']; ?>"/>
-                        <input type="hidden" name="ta" value="<?php echo $_SESSION['userId']; ?>"/>
-                        <input type="hidden" name="lesson" value="<?php echo $lesson; ?>"/>
-                        <input type="hidden" name="group" value="<?php echo $groupId; ?>"/>
-                        <input type="hidden" name="chatId" value="<?php echo $row['id']; ?>"/>
-                        <button class="uk-button uk-button-default" type="submit">登録</button>
-                      </form>
-                    </td>
-              		</tr>
-              		<tr>
-              			<th>ユーザ名</th>
-              			<th style="text-transform: none!important;"><?php echo $row['name']; ?></th>
-              		</tr>
-              		<tr>
-              			<th>グループ</th>
-              			<th><?php echo $row['groupId']; ?></th>
-              		</tr>
-              		<tr>
-              			<th>理解度</th>
-              			<th><?php echo $row['level']; ?></th>
-              		</tr>
-              		<tr>
-              			<th>タイムスタンプ</th>
-              			<th><?php echo $row['timestamp']; ?></th>
-              		</tr>
-              	</tbody>
-                <?php
-                    }
-                  }catch(PDOException $e){
-                    $errorMessage = 'エラーです';
-                  }
-                ?>
-              </table>
-            </div>
-
-
-            <div>
-              <button class="uk-button uk-button-default uk-margin-small-bottom" onclick="location.href='../'">戻る</button>
-            </div>
-          </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
         </div>
-      </section>
+        <div class="navbar-item">
+          <a href="https://takagi-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
+        </div>
+      </div>
+    </header>
 
-    </section>
+    <!-- ライン -->
+    <div class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">情報基礎数学 計画/振り返りシステム 管理画面</h1>
+          <h2 class="subtitle">＠チャットログ閲覧ページ</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- メイン表示部分 -->
+    <main class="columns">
+      <div class="submenu column is-3">
+        <!-- side bar -->
+        <aside class="box">
+          <p>各学生のチャットログを閲覧できるページです。</p>
+          <p>チャットログを参考にし、個別指導を行ってください。</p>
+        </aside>
+        <aside class="box menu">
+           <p class="menu-label">
+              各種リンク
+           </p>
+           <ul class="menu-list">
+               <li><a href="https://takagi-lab.tk/g031o008/plan/view/main/index.php">学習計画の作成</a></li>
+               <li><a href="https://www.ipusoft-el.jp/mdl/">岩手県立大学Moodle</a></li>
+               <li><a href="https://solomon.uela.cloud/">共通基盤教育システム</a></li>
+            </ul>
+         </aside>
+ 　　　</div>
+      <div class="column">
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
+                <p><strong>確認画面</strong></p>
+
+                <!-- 表示部分 -->
+                <div id="app">
+                  <bulma-accordion>
+                <?php
+                  $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+                  $userId = $_SESSION['userId'];
+                  try{
+                    $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+
+                    $stmt = $pdo->prepare('SELECT * FROM `chatLog2020c` WHERE name = ?');
+                    $stmt->execute(array($userId));
+
+                    while ($row = $stmt->fetch()) {
+                ?>
+                      <bulma-accordion-item>
+                        <div slot="title">
+                          <h3>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴</h3>
+                          <p>回答時間：<?php echo $row['timestamp']; ?></p>
+                        </div>
+                        <div slot="content">
+                         <?php echo nl2br($row['logAll']); ?>
+                       </div>
+                      </bulma-accordion-item>
+
+                <?php
+                      }
+                    }catch(PDOException $e){
+                      $errorMessage = 'エラーです';
+                    }
+                ?>
+                  </bulma-accordion>
+                </div>
+
+              </div>
+
+           </div>
+        </article>
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
+                 <p><strong>前のページに戻る</strong></p>
+                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/g031o008/plan/view/main/index.php'">こちらをクリック</button>
+              </div>
+           </div>
+        </article>
+　　　 </div>
+　　 </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+           <p>takagi-lab</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="../js/bulma-accordion.js"></script>
 
   </body>
-</html>

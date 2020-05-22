@@ -7,23 +7,6 @@ if (!isset($_SESSION["userId"])) {
     exit;
 }
 
-// 管理者以外を弾く
-$name = $_SESSION['userId'];
-$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-try{
-  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-  $stmt = $pdo->prepare('SELECT admin FROM userData WHERE name = ?');
-  $stmt->execute(array($name));
-  $admin = $stmt->fetchColumn();
-
-  if($admin != 1){
-    header("Location: https://takagi-lab.tk//chatbot/page/Login.php");
-    exit;
-  }
-}catch(PDOException $e){
-
-}
-
 date_default_timezone_set('Asia/Tokyo');
 ?>
 
@@ -62,10 +45,11 @@ date_default_timezone_set('Asia/Tokyo');
     </header>
 
     <!-- ライン -->
-    <div class="hero is-dark is-bold">
+    <div class="hero is-info is-bold">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">情報基礎数学 計画/振り返りシステム 管理画面</h1>
+          <h1 class="title">第２回 学習振り返りページ</h1>
+          <h2 class="subtitle">＠２０２０年度情報基礎数学C</h2>
         </div>
       </div>
     </div>
@@ -75,8 +59,7 @@ date_default_timezone_set('Asia/Tokyo');
       <div class="submenu column is-3">
         <!-- side bar -->
         <aside class="box">
-          <p>TA/SA/教員用管理ページです。</p>
-          <p>通常の学生は、学習計画の作成ページに遷移します。</p>
+          情報基礎数学Cでは、毎回の学習をチャットボットを利用して振り返りしてもらいます。画面に従い振り返りを進めてください。
         </aside>
         <aside class="box menu">
            <p class="menu-label">
@@ -90,15 +73,26 @@ date_default_timezone_set('Asia/Tokyo');
          </aside>
  　　　</div>
       <div class="column">
+        <!-- チャット部分 -->
         <article class="box media">
-          <div class="media-content">
-            <p><strong>管理者限定表示</strong></p>
-            <ul class="menu-list">
-                <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>
-                <li><a href="#">チャットログ閲覧ページ（準備中）</a></li>
-                <li><a href="#">ユーザー管理（準備中）</a></li>
-             </ul>
-          </div>
+           <div class="media-content">
+              <div class="content">
+                <div class="botui-app-container" id="chat-app">
+                  <!-- チャットの表示  -->
+                  <!-- <bot-ui></bot-ui> -->
+                  <p>第２回振り返りのチャットは準備中です。</p>
+                </div>
+              </div>
+           </div>
+        </article>
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
+                 <p><strong>チャット画面が表示されない場合は？</strong></p>
+                 <p>お使いのブラウザを確認してみてください。推奨ブラウザはGoogleChromeです。</p>
+                 <p>JavaScriptが有効になっているか確認してみてください。</p>
+              </div>
+           </div>
         </article>
 　　　 </div>
 　　 </main>
@@ -111,6 +105,10 @@ date_default_timezone_set('Asia/Tokyo');
         </div>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="../js/botui.min.js"></script>
+    <script src="../js/1.js"></script>
 
   </body>
 </html>

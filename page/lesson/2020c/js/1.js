@@ -26,6 +26,11 @@ var reExam = [];    // 再テスト点数
 var reExamCheckIs;  // 再テスト実施確認用
 var correct, correct2; // 各テスト合計点
 
+// 時間がないので仮
+var test1 = test2 = test3 = test4 = test5 = test6 = test7 = 0;
+var retest1 = retest2 = retest3 = retest4 = retest5 = retest6 = retest7 = 0;
+var exam_url = '../api/exam_send.php';
+
 init();
 
 // ishiのDB関数
@@ -54,6 +59,34 @@ function send_log(lesson, level, log_all){
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   // xhr.onload = function(){}
   xhr.send('lesson=' + lesson + '&level=' + level + '&log_all=' + log_all);
+}
+
+// テスト点数格納
+function exam_check(){
+  test1 = exam[0];
+  test2 = exam[1];
+  test3 = exam[2];
+  test4 = exam[3];
+  test5 = exam[4];
+  test6 = exam[5];
+  test7 = exam[6];
+  if(reExamCheckIs == '受験した'){
+    retest1 = reExam[0];
+    retest2 = reExam[1];
+    retest3 = reExam[2];
+    retest4 = reExam[3];
+    retest5 = reExam[4];
+    retest6 = reExam[5];
+    retest7 = reExam[6];
+  }
+}
+
+function send_exam(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', exam_url, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  // xhr.onload = function(){}
+  xhr.send('test1=' + test1 + '&test2=' + test2 + '&test3=' + test3 + '&test4=' + test4 + '&test5=' + test5 + '&test6=' + test6 + '&test7=' + test7 + '&retest1=' + retest1 + '&retest2=' + retest2 + '&retest3=' + retest3 + '&retest4=' + retest4 + '&retest5=' + retest5 + '&retest6=' + retest6 + '&retest7=' + test7);
 }
 
 
@@ -1455,6 +1488,8 @@ function end(){
       addBot(log);
       ishiDb(targetScore, actualScore, satisfaction);
       send_log(lesson, level, log_all);
+      exam_check();
+      send_exam();
         botui.message.add({
           delay:1000,
           loading:true,
