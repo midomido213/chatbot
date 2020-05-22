@@ -126,7 +126,7 @@ try{
            <div class="media-content">
               <div class="content">
                  <p><strong>前のページに戻る</strong></p>
-                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/g031o008/plan/view/main/index.php'">こちらをクリック</button>
+                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/chatbot/admin/'">こちらをクリック</button>
               </div>
            </div>
         </article>

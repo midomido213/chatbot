@@ -86,7 +86,7 @@ function send_exam(){
   xhr.open('POST', exam_url, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   // xhr.onload = function(){}
-  xhr.send('test1=' + test1 + '&test2=' + test2 + '&test3=' + test3 + '&test4=' + test4 + '&test5=' + test5 + '&test6=' + test6 + '&test7=' + test7 + '&retest1=' + retest1 + '&retest2=' + retest2 + '&retest3=' + retest3 + '&retest4=' + retest4 + '&retest5=' + retest5 + '&retest6=' + retest6 + '&retest7=' + test7);
+  xhr.send('test1=' + test1 + '&test2=' + test2 + '&test3=' + test3 + '&test4=' + test4 + '&test5=' + test5 + '&test6=' + test6 + '&test7=' + test7 + '&retest1=' + retest1 + '&retest2=' + retest2 + '&retest3=' + retest3 + '&retest4=' + retest4 + '&retest5=' + retest5 + '&retest6=' + retest6 + '&retest7=' + retest7);
 }
 
 
