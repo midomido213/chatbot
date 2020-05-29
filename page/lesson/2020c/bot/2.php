@@ -79,8 +79,7 @@ date_default_timezone_set('Asia/Tokyo');
               <div class="content">
                 <div class="botui-app-container" id="chat-app">
                   <!-- チャットの表示  -->
-                  <!-- <bot-ui></bot-ui> -->
-                  <p>第２回振り返りのチャットは準備中です。</p>
+                  <bot-ui></bot-ui>
                 </div>
               </div>
            </div>
@@ -108,7 +107,7 @@ date_default_timezone_set('Asia/Tokyo');
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
     <script src="../js/botui.min.js"></script>
-    <script src="../js/1.js"></script>
+    <script src="../js/2.js"></script>
 
   </body>
 </html>

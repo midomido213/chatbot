@@ -118,7 +118,48 @@ try{
         <article class="box media">
            <div class="media-content">
               <div class="content">
-                <p><strong>確認画面</strong></p>
+                <p><strong>第２回　確認テスト・再テスト　点数確認画面</strong></p>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th><abbr title="user">ユーザー名</abbr></th>
+                      <th><abbr title="exam1">確認テスト第１問（１）</abbr></th>
+                      <th><abbr title="exam2">確認テスト第１問（２）</abbr></th>
+                      <th><abbr title="exam3">確認テスト第２問</abbr></th>
+                      <th><abbr title="exam4">確認テスト第３問</abbr></th>
+                      <th><abbr title="exam5">確認テスト第４問</abbr></th>
+                      <th><abbr title="exam6">確認テスト第５問</abbr></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+                    $userId = $_SESSION['userId'];
+                    try{
+                      $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+
+                      $stmt = $pdo->prepare('SELECT * FROM `exam2020c` ORDER BY name');
+                      $stmt->execute();
+
+                      while ($row = $stmt->fetch()) {
+                    ?>
+                    <tr>
+                      <th><?php echo nl2br($row['name']); ?></th>
+                      <td><?php echo nl2br($row['exam1']); ?></td>
+                      <td><?php echo nl2br($row['exam2']); ?></td>
+                      <td><?php echo nl2br($row['exam3']); ?></td>
+                      <td><?php echo nl2br($row['exam4']); ?></td>
+                      <td><?php echo nl2br($row['exam5']); ?></td>
+                      <td><?php echo nl2br($row['exam6']); ?></td>
+                    </tr>
+                    <?php
+                          }
+                        }catch(PDOException $e){
+                          $errorMessage = 'エラーです';
+                        }
+                    ?>
+                  </tbody>
+                </table>
               </div>
            </div>
         </article>

@@ -86,7 +86,7 @@ try{
     </header>
 
     <!-- ライン -->
-    <div class="hero is-primary is-bold">
+    <div class="hero is-dark is-bold">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">情報基礎数学 計画/振り返りシステム 管理画面</h1>
@@ -129,14 +129,15 @@ try{
                   try{
                     $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                    $stmt = $pdo->prepare('SELECT * FROM `chatLog2020c` WHERE name = ?');
-                    $stmt->execute(array($userId));
+                    $stmt = $pdo->prepare('SELECT * FROM `chatLog2020c`');
+                    $stmt->execute();
 
                     while ($row = $stmt->fetch()) {
                 ?>
                       <bulma-accordion-item>
                         <div slot="title">
-                          <h3>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴</h3>
+                          <p>ユーザー：<?php echo nl2br($row['name']); ?></p>
+                          <p>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴</p>
                           <p>回答時間：<?php echo $row['timestamp']; ?></p>
                         </div>
                         <div slot="content">
@@ -161,7 +162,7 @@ try{
            <div class="media-content">
               <div class="content">
                  <p><strong>前のページに戻る</strong></p>
-                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/g031o008/plan/view/main/index.php'">こちらをクリック</button>
+                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/chatbot/admin/'">こちらをクリック</button>
               </div>
            </div>
         </article>
@@ -178,6 +179,6 @@ try{
     </footer>
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
-    <script src="../js/bulma-accordion.js"></script>
+    <script src="https://takagi-lab.tk/chatbot/page/lesson/2020c/js/bulma-accordion.js"></script>
 
   </body>

@@ -28,6 +28,8 @@ $reExam4 = $_POST['retest4'];
 $reExam5 = $_POST['retest5'];
 $reExam6 = $_POST['retest6'];
 $reExam7 = $_POST['retest7'];
+$reExam8 = $_POST['retest8'];
+$reExam9 = $_POST['retest9'];
 
 $errorMessage = '';
 
@@ -35,8 +37,8 @@ $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbna
 try{
   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO exam2020c (name, exam1, exam2, exam3, exam4, exam5, exam6, exam7, reExam1, reExam2, reExam3, reExam4, reExam5, reExam6, reExam7) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-  $stmt->execute([$name, $exam1, $exam2, $exam3, $exam4, $exam5, $exam6, $exam7, $reExam1, $reExam2, $reExam3, $reExam4, $reExam5, $reExam6, $reExam7]);
+  $stmt = $pdo->prepare('INSERT INTO exam2020c (name, exam1, exam2, exam3, exam4, exam5, exam6, reExam1, reExam2, reExam3, reExam4, reExam5, reExam6, reExam7, reExam8, reExam9) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+  $stmt->execute([$name, $exam1, $exam2, $exam3, $exam4, $exam5, $exam6, $reExam1, $reExam2, $reExam3, $reExam4, $reExam5, $reExam6, $reExam7, $reExam8, $reExam9]);
 }catch(PDOException $e){
   $errorMessage = 'エラーです';
 }
