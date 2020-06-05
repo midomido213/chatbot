@@ -100,6 +100,30 @@ date_default_timezone_set('Asia/Tokyo');
              </ul>
           </div>
         </article>
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
+                 <p><strong>チャットボットページ確認用</strong></p>
+                 <ul class="menu-list">
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/1.php">第1回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/2.php">第2回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/3.php">第3回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/4.php">第4回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/5.php">第5回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/6.php">第6回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/7.php">第7回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/8.php">第8回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/9.php">第9回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/10.php">第10回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/11.php">第11回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/12.php">第12回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/13.php">第13回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/14.php">第14回</a></p></li>
+                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/15.php">第15回</a></p></li>
+                 </ul>
+              </div>
+           </div>
+        </article>
 　　　 </div>
 　　 </main>
 

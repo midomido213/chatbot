@@ -14,9 +14,7 @@ if (!isset($_SESSION["userId"])) {
 date_default_timezone_set('Asia/Tokyo');
 
 $userId = $_SESSION['userId'];
-$classDate = new DateTime('2020-5-29 00:00:00', new DateTimeZone('Asia/Tokyo'));
-$classDate = $classDate->format('U');
-$classDate .= "000";
+$classDate = $_POST['classDate'];
 $goal = $_POST['targetScore'];
 $testScore = $_POST['actualScore'];
 $satisfaction = $_POST['satisfaction'];
