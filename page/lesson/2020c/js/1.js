@@ -35,11 +35,13 @@ init();
 
 // ishiのDB関数
 function ishiDb(targetScore, actualScore, satisfaction){
+  var date = new Date(2020, 4, 22, 0, 0, 0); // 月は0~11
+  classDate = date.getTime();
   var xhr = new XMLHttpRequest();
   xhr.open('POST', ishi_db, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-  xhr.send('targetScore=' + targetScore + '&actualScore=' + actualScore + '&satisfaction=' + satisfaction);
+  xhr.send('targetScore=' + targetScore + '&actualScore=' + actualScore + '&satisfaction=' + satisfaction + '&classDate=' + classDate);
 }
 
 // ログ書き足し関数１

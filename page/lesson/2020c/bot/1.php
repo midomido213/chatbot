@@ -79,7 +79,37 @@ date_default_timezone_set('Asia/Tokyo');
               <div class="content">
                 <div class="botui-app-container" id="chat-app">
                   <!-- チャットの表示  -->
-                  <bot-ui></bot-ui>
+                  <?php
+                  // 振り返り済みチェック
+                  require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
+                  $name = $_SESSION['userId'];
+                  $classDate = new DateTime('2020-05-22 00:00:00', new DateTimeZone('Asia/Tokyo'));
+                  $classDate = $classDate->format('U');
+                  $classDate .= "000";
+                  $errorMessage = '';
+                  $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $ishi['host'], $ishi['dbname']);
+                  try{
+                    $pdo = new PDO($dsn, $ishi['user'], $ishi['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+                    $stmt = $pdo->prepare('SELECT COUNT(id) FROM chatbot WHERE userId = ? AND classDate = ?');
+                    $stmt->execute(array($name, $classDate));
+                    $check = $stmt->fetchColumn();
+
+                    if($check > 0){
+                      echo '<p>振り返り登録済みです。</p>';
+                      echo '<p>振り返り履歴ページに遷移します・・・（５秒後）</p>';
+                      header("refresh:5;url=https://takagi-lab.tk/chatbot/page/lesson/2020c/history/");
+                    }else{
+                      echo '<bot-ui></bot-ui>';
+                    }
+
+                  }catch(PDOException $e){
+                    $errorMessage = 'エラーです。';
+                    echo $errorMessage;
+                    echo var_dump($name);
+                    echo var_dump($classDate);
+                    echo var_dump($check);
+                  }
+                  ?>
                 </div>
               </div>
            </div>

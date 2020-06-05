@@ -123,6 +123,7 @@ try{
                   <thead>
                     <tr>
                       <th><abbr title="user">ユーザー名</abbr></th>
+                      <th><abbr title="group">グループ</abbr></th>
                       <th><abbr title="exam1">確認テスト第１問（１）</abbr></th>
                       <th><abbr title="exam2">確認テスト第１問（２）</abbr></th>
                       <th><abbr title="exam3">確認テスト第２問</abbr></th>
@@ -138,13 +139,14 @@ try{
                     try{
                       $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                      $stmt = $pdo->prepare('SELECT * FROM `exam2020c` ORDER BY name');
+                      $stmt = $pdo->prepare('SELECT * FROM `exam2020c` INNER JOIN groupData2020c ON exam2020c.name = groupData2020c.userName ORDER BY groupData2020c.id');
                       $stmt->execute();
 
                       while ($row = $stmt->fetch()) {
                     ?>
                     <tr>
                       <th><?php echo nl2br($row['name']); ?></th>
+                      <th>グループ<?php echo nl2br($row['groupId']); ?></th>
                       <td><?php echo nl2br($row['exam1']); ?></td>
                       <td><?php echo nl2br($row['exam2']); ?></td>
                       <td><?php echo nl2br($row['exam3']); ?></td>
