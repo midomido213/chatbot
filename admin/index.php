@@ -92,6 +92,13 @@ date_default_timezone_set('Asia/Tokyo');
       <div class="column">
         <article class="box media">
           <div class="media-content">
+            <p><strong>第4回授業 TA/SA 面談について</strong></p>
+            <p>チャットログ閲覧ページを確認し、分からない箇所について記述している学生については内容について指導してください。</p>
+            <p>理解度に応じてチャットログの色が変わっています。参考にしてください。</p>
+          </div>
+        </article>
+        <article class="box media">
+          <div class="media-content">
             <p><strong>管理者限定表示</strong></p>
             <ul class="menu-list">
                 <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>

@@ -53,8 +53,6 @@ try{
     <meta charset="utf-8">
       <title>情報基礎数学botのページ</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link rel="stylesheet" href="../css/botui.min.css" />
-      <link rel="stylesheet" href="../css/botui-theme-origin.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
@@ -118,6 +116,52 @@ try{
         <article class="box media">
            <div class="media-content">
               <div class="content">
+                 <p>理解度について</p>
+                 <p>理解度に応じてチャットログの背景色を変えています。</p>
+                 <span class="tag is-large" style="background:#ee5253">理解度0：全く理解ができていない</span>
+                 <span class="tag is-large" style="background:#ff6b6b">理解度1：まだ分からない箇所が多く不安である</span>
+                 <span class="tag is-large" style="background:#feca57">理解度2：少し理解しているが、曖昧な箇所もありどちらともいえない</span>
+                 <span class="tag is-large" style="background:#48dbfb">理解度3：概ね理解しており、不安が少ない</span>
+                 <span class="tag is-large" style="background:#1dd1a1">理解度4：今回の範囲に関しては完璧に理解している</span>
+              </div>
+           </div>
+        </article>
+        <article class="box media">
+           <form action="index.php" method="post">
+             <div class="field">
+               <label class="label">授業回</label>
+               <div class="select">
+                 <select name="lesson">
+                   <option>1</option>
+                   <option>2</option>
+                   <option>3</option>
+                   <option>4</option>
+                 </select>
+               </div>
+             </div>
+             <div class="field">
+               <label class="label">グループ</label>
+               <div class="select">
+                 <select name="group">
+                   <option>1</option>
+                   <option>2</option>
+                   <option>3</option>
+                   <option>4</option>
+                   <option>5</option>
+                   <option>6</option>
+                   <option>7</option>
+                   <option>8</option>
+                   <option>9</option>
+                   <option>10</option>
+                 </select>
+               </div>
+              </div>
+              <button class="button is-primary">Submit</button>
+           </form>
+        </article>
+        <article class="box media">
+           <div class="media-content">
+              <div class="content">
                 <p><strong>確認画面</strong></p>
 
                 <!-- 表示部分 -->
@@ -126,18 +170,20 @@ try{
                 <?php
                   $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
                   $userId = $_SESSION['userId'];
+                  $groupId = $_POST['group'];
+                  $lesson = $_POST['lesson'];
                   try{
                     $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                    $stmt = $pdo->prepare('SELECT * FROM `chatLog2020c`');
-                    $stmt->execute();
+                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE groupId = ? AND lesson = ? ORDER BY level > 0 DESC, level ASC;');
+                    $stmt->execute(array($groupId, $lesson));
 
                     while ($row = $stmt->fetch()) {
                 ?>
-                      <bulma-accordion-item>
+                      <bulma-accordion-item class="level<?php echo nl2br($row['level']); ?>">
                         <div slot="title">
-                          <p>ユーザー：<?php echo nl2br($row['name']); ?></p>
-                          <p>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴</p>
+                          <p>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴　ユーザー：<?php echo nl2br($row['name']); ?></p>
+                          <p>理解度:<?php echo nl2br($row['level']); ?></p>
                           <p>回答時間：<?php echo $row['timestamp']; ?></p>
                         </div>
                         <div slot="content">
