@@ -5,7 +5,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
 
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/Logout.php");
     exit;
 }
 
@@ -19,7 +19,7 @@ try{
   $admin = $stmt->fetchColumn();
 
   if($admin != 1){
-    header("Location: https://takagi-lab.tk/chatbot/page/lesson/2019c/index.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/lesson/2019c/index.php");
     exit;
   }
 }catch(PDOException $e){
@@ -55,8 +55,8 @@ try{
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
-      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/table.css" />
+      <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/style.css" />
+      <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/table.css" />
 
       <!-- BULMA CDN -->
       <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
@@ -78,7 +78,7 @@ try{
           <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
         </div>
         <div class="navbar-item">
-          <a href="https://takagi-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
+          <a href="https://tkg-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
         </div>
       </div>
     </header>
@@ -106,7 +106,7 @@ try{
               各種リンク
            </p>
            <ul class="menu-list">
-               <li><a href="https://takagi-lab.tk/g031o008/plan/view/main/index.php">学習計画の作成</a></li>
+               <li><a href="https://tkg-lab.tk/g031o008/plan/view/main/index.php">学習計画の作成</a></li>
                <li><a href="https://www.ipusoft-el.jp/mdl/">岩手県立大学Moodle</a></li>
                <li><a href="https://solomon.uela.cloud/">共通基盤教育システム</a></li>
             </ul>
@@ -208,7 +208,7 @@ try{
            <div class="media-content">
               <div class="content">
                  <p><strong>前のページに戻る</strong></p>
-                 <button class="button is-primary" onclick="location.href='https://takagi-lab.tk/chatbot/admin/'">こちらをクリック</button>
+                 <button class="button is-primary" onclick="location.href='https://tkg-lab.tk/chatbot/admin/'">こちらをクリック</button>
               </div>
            </div>
         </article>
@@ -225,6 +225,6 @@ try{
     </footer>
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
-    <script src="https://takagi-lab.tk/chatbot/page/lesson/2020c/js/bulma-accordion.js"></script>
+    <script src="https://tkg-lab.tk/chatbot/page/lesson/2020c/js/bulma-accordion.js"></script>
 
   </body>

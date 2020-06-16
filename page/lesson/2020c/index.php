@@ -4,7 +4,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
 
 // ログイン状態チェック
 if (!isset($_SESSION["NAME"]) && !isset($_SESSION["ID"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/");
+    header("Location: https://tkg-lab.tk/chatbot/page/");
     exit;
 }
 

@@ -3,7 +3,7 @@ session_start();
 
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/Logout.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ date_default_timezone_set('Asia/Tokyo');
       <link rel="stylesheet" href="../css/botui-theme-default.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
+      <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/style.css" />
 
       <!-- UIkit CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />

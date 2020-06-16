@@ -3,7 +3,7 @@ session_start();
 
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/Logout.php");
     exit;
 }
 
@@ -17,7 +17,7 @@ try{
   $admin = $stmt->fetchColumn();
 
   if($admin != 1){
-    header("Location: https://takagi-lab.tk//chatbot/page/Login.php");
+    header("Location: https://tkg-lab.tk//chatbot/page/Login.php");
     exit;
   }
 }catch(PDOException $e){
@@ -37,7 +37,7 @@ date_default_timezone_set('Asia/Tokyo');
       <link rel="stylesheet" href="../css/botui-theme-origin.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <link rel="stylesheet" href="https://takagi-lab.tk/chatbot/page/css/style.css" />
+      <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/style.css" />
 
       <!-- BULMA CDN -->
       <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
@@ -56,7 +56,7 @@ date_default_timezone_set('Asia/Tokyo');
           <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
         </div>
         <div class="navbar-item">
-          <a href="https://takagi-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
+          <a href="https://tkg-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
         </div>
       </div>
     </header>
@@ -83,7 +83,7 @@ date_default_timezone_set('Asia/Tokyo');
               各種リンク
            </p>
            <ul class="menu-list">
-               <li><a href="https://takagi-lab.tk/g031o008/plan/view/main/index.php">学習計画の作成</a></li>
+               <li><a href="https://tkg-lab.tk/g031o008/plan/view/main/index.php">学習計画の作成</a></li>
                <li><a href="https://www.ipusoft-el.jp/mdl/">岩手県立大学Moodle</a></li>
                <li><a href="https://solomon.uela.cloud/">共通基盤教育システム</a></li>
             </ul>
@@ -112,21 +112,21 @@ date_default_timezone_set('Asia/Tokyo');
               <div class="content">
                  <p><strong>チャットボットページ確認用</strong></p>
                  <ul class="menu-list">
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/1.php">第1回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/2.php">第2回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/3.php">第3回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/4.php">第4回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/5.php">第5回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/6.php">第6回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/7.php">第7回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/8.php">第8回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/9.php">第9回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/10.php">第10回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/11.php">第11回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/12.php">第12回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/13.php">第13回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/14.php">第14回</a></p></li>
-                   <li><p><a href="https://takagi-lab.tk/chatbot/page/lesson/2020c/bot/15.php">第15回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/1.php">第1回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/2.php">第2回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/3.php">第3回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/4.php">第4回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/5.php">第5回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/6.php">第6回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/7.php">第7回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/8.php">第8回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/9.php">第9回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/10.php">第10回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/11.php">第11回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/12.php">第12回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/13.php">第13回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/14.php">第14回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/15.php">第15回</a></p></li>
                  </ul>
               </div>
            </div>
