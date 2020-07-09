@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
-
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
     header("Location: https://tkg-lab.tk/chatbot/page/Logout.php");
@@ -19,13 +17,14 @@ try{
   $admin = $stmt->fetchColumn();
 
   if($admin != 1){
-    header("Location: https://tkg-lab.tk/chatbot/page/lesson/2019c/index.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/Login.php");
     exit;
   }
 }catch(PDOException $e){
 
 }
 
+<<<<<<< HEAD
 
 //DB登録処理
 $comment = $_POST['comment'];
@@ -45,6 +44,9 @@ try{
 
 }
 
+=======
+date_default_timezone_set('Asia/Tokyo');
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
 ?>
 
 <!doctype html>
@@ -53,6 +55,7 @@ try{
     <meta charset="utf-8">
       <title>情報基礎数学botのページ</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<<<<<<< HEAD
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/style.css" />
@@ -63,7 +66,17 @@ try{
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
       <!-- BULMA JS -->
       <script src="https://cdn.jsdelivr.net/npm/vue-bulma-accordion@0.4.8/dist/vue-bulma-accordion.umd.min.js"></script>
+=======
+      <link rel="stylesheet" href="../css/botui.min.css" />
+      <link rel="stylesheet" href="../css/botui-theme-origin.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+      <link rel="stylesheet" href="https://tkg-lab.tk/chatbot/page/css/style.css" />
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
+
+      <!-- BULMA CDN -->
+      <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
   </head>
   <body>
     <!-- header -->
@@ -76,10 +89,17 @@ try{
       <div class="navbar-end">
         <div class="navbar-item">
           <p><?php echo($_SESSION["userId"]); ?> でログイン中</p>
+<<<<<<< HEAD
         </div>
         <div class="navbar-item">
           <a href="https://tkg-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
         </div>
+=======
+        </div>
+        <div class="navbar-item">
+          <a href="https://tkg-lab.tk/chatbot/page/Logout.php"><i class="fa fa-user"></i>ログアウト</a>
+        </div>
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
       </div>
     </header>
 
@@ -88,7 +108,10 @@ try{
       <div class="hero-body">
         <div class="container">
           <h1 class="title">情報基礎数学 計画/振り返りシステム 管理画面</h1>
+<<<<<<< HEAD
           <h2 class="subtitle">＠チャットログ閲覧ページ</h2>
+=======
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
         </div>
       </div>
     </div>
@@ -98,8 +121,13 @@ try{
       <div class="submenu column is-3">
         <!-- side bar -->
         <aside class="box">
+<<<<<<< HEAD
           <p>各学生のチャットログを閲覧できるページです。</p>
           <p>チャットログを参考にし、個別指導を行ってください。</p>
+=======
+          <p>TA/SA/教員用管理ページです。</p>
+          <p>通常の学生は、学習計画の作成ページに遷移します。</p>
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
         </aside>
         <aside class="box menu">
            <p class="menu-label">
@@ -114,6 +142,7 @@ try{
  　　　</div>
       <div class="column">
         <article class="box media">
+<<<<<<< HEAD
            <div class="media-content">
               <div class="content">
                  <p>理解度について</p>
@@ -206,12 +235,50 @@ try{
               </div>
 
            </div>
+=======
+          <div class="media-content">
+            <p><strong>第4回授業 TA/SA 面談について</strong></p>
+            <p>チャットログ閲覧ページを確認し、分からない箇所について記述している学生については内容について指導してください。</p>
+            <p>理解度に応じてチャットログの色が変わっています。参考にしてください。</p>
+          </div>
+        </article>
+        <article class="box media">
+          <div class="media-content">
+            <p><strong>管理者限定表示</strong></p>
+            <ul class="menu-list">
+                <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>
+                <li><a href="./log/">チャットログ閲覧ページ</a></li>
+                <li><a href="#">ユーザー管理（準備中）</a></li>
+             </ul>
+          </div>
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
         </article>
         <article class="box media">
            <div class="media-content">
               <div class="content">
+<<<<<<< HEAD
                  <p><strong>前のページに戻る</strong></p>
                  <button class="button is-primary" onclick="location.href='https://tkg-lab.tk/chatbot/admin/'">こちらをクリック</button>
+=======
+                 <p><strong>チャットボットページ確認用</strong></p>
+                 <ul class="menu-list">
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/1.php">第1回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/2.php">第2回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/3.php">第3回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/4.php">第4回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/5.php">第5回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/6.php">第6回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/7.php">第7回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/8.php">第8回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/9.php">第9回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/10.php">第10回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/11.php">第11回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/12.php">第12回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/13.php">第13回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/14.php">第14回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/15.php">第15回</a></p></li>
+                 </ul>
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
               </div>
            </div>
         </article>
@@ -226,8 +293,11 @@ try{
         </div>
       </div>
     </footer>
+<<<<<<< HEAD
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
     <script src="https://tkg-lab.tk/chatbot/page/lesson/2020c/js/bulma-accordion.js"></script>
+=======
+>>>>>>> 70376c10f3d19070178d4f0c694770334cef0e88
 
   </body>

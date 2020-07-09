@@ -5,18 +5,16 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
 
 // ログイン状態チェック
 if (!isset($_SESSION["userId"])) {
-    header("Location: https://takagi-lab.tk/chatbot/page/Logout.php");
+    header("Location: https://tkg-lab.tk/chatbot/page/Logout.php");
     exit;
 }else{
-  header("Location: https://takagi-lab.tk/chatbot/page/");
+  header("Location: https://tkg-lab.tk/chatbot/page/");
 }
 
 date_default_timezone_set('Asia/Tokyo');
 
 $userId = $_SESSION['userId'];
-$classDate = new DateTime('2020-1-9 00:00:00', new DateTimeZone('Asia/Tokyo'));
-$classDate = $classDate->format('U');
-$classDate .= "000";
+$classDate = $_POST['classDate'];
 $goal = $_POST['targetScore'];
 $testScore = $_POST['actualScore'];
 $satisfaction = $_POST['satisfaction'];

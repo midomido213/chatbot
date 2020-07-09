@@ -48,7 +48,7 @@ date_default_timezone_set('Asia/Tokyo');
     <div class="hero is-info is-bold">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">第１回 学習振り返りページ</h1>
+          <h1 class="title">第７回 学習振り返りページ</h1>
           <h2 class="subtitle">＠２０２０年度情報基礎数学C</h2>
         </div>
       </div>
@@ -83,7 +83,7 @@ date_default_timezone_set('Asia/Tokyo');
                   // 振り返り済みチェック
                   require_once ($_SERVER['DOCUMENT_ROOT'] . '/chatbot/config/config.php');
                   $name = $_SESSION['userId'];
-                  $classDate = new DateTime('2020-05-22 00:00:00', new DateTimeZone('Asia/Tokyo'));
+                  $classDate = new DateTime('2020-07-03 00:00:00', new DateTimeZone('Asia/Tokyo'));
                   $classDate = $classDate->format('U');
                   $classDate .= "000";
                   $errorMessage = '';
@@ -137,7 +137,7 @@ date_default_timezone_set('Asia/Tokyo');
 
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
     <script src="../js/botui.min.js"></script>
-    <script src="../js/1.js"></script>
+    <script src="../js/7.js"></script>
 
   </body>
 </html>
