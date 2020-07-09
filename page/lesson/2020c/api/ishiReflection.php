@@ -29,7 +29,7 @@ try{
   $stmt->execute([$userId, $coverge, $subjects]);
 
   while($row =$stmt->fetch()){
-    if($row['execting'] == NULL){
+    if($row['executing'] == NULL){
       $executing = 0;
     }else{
       $executing = $row['executing'];

@@ -18,6 +18,7 @@ $classDate = $_POST['classDate'];
 $goal = $_POST['targetScore'];
 $testScore = $_POST['actualScore'];
 $satisfaction = $_POST['satisfaction'];
+$reflection = $_POST['reflection'];
 
 $errorMessage = '';
 
@@ -25,8 +26,8 @@ $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $ishi['host'], $ishi['
 try{
   $pdo = new PDO($dsn, $ishi['user'], $ishi['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO chatbot (userId, classDate, goal, testScore, satisfaction) VALUES (?, ?, ?, ?, ?)');
-  $stmt->execute([$userId, $classDate, $goal, $testScore, $satisfaction]);
+  $stmt = $pdo->prepare('INSERT INTO chatbot (userId, classDate, goal, testScore, satisfaction, reflection) VALUES (?, ?, ?, ?, ?, ?)');
+  $stmt->execute([$userId, $classDate, $goal, $testScore, $satisfaction, $reflection]);
 }catch(PDOException $e){
   $errorMessage = 'エラーです';
 }
