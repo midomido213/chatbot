@@ -92,7 +92,7 @@ date_default_timezone_set('Asia/Tokyo');
       <div class="column">
         <article class="box media">
           <div class="media-content">
-            <p><strong>第4回授業 TA/SA 面談について</strong></p>
+            <p><strong>このシステムの利用方法について</strong></p>
             <p>チャットログ閲覧ページを確認し、分からない箇所について記述している学生については内容について指導してください。</p>
             <p>理解度に応じてチャットログの色が変わっています。参考にしてください。</p>
           </div>

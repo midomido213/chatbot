@@ -136,6 +136,17 @@ try{
                    <option>2</option>
                    <option>3</option>
                    <option>4</option>
+                   <option>5</option>
+                   <option>6</option>
+                   <option>7</option>
+                   <option>8</option>
+                   <option>9</option>
+                   <option>10</option>
+                   <option>11</option>
+                   <option>12</option>
+                   <option>13</option>
+                   <option>14</option>
+                   <option>15</option>
                  </select>
                </div>
              </div>
@@ -175,7 +186,7 @@ try{
                   try{
                     $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE groupId = ? AND lesson = ? ORDER BY level > 0 DESC, level ASC;');
+                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE groupId = ? AND lesson = ? ORDER BY level ASC;');
                     $stmt->execute(array($groupId, $lesson));
 
                     while ($row = $stmt->fetch()) {
