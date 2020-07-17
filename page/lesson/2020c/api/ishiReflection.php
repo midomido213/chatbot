@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
 $userId = $_SESSION['userId'];
 $coverge = $_GET['lesson'];
 $subjects = '2020年基礎数学C';
-$executing = '';
+$executing = 0;
 
 $errorMessage = '';
 

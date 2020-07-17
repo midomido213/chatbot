@@ -101,6 +101,7 @@ date_default_timezone_set('Asia/Tokyo');
           <div class="media-content">
             <p><strong>管理者限定表示</strong></p>
             <ul class="menu-list">
+                <li><a href="./status/">振り返り状況確認ページ</a></li>
                 <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>
                 <li><a href="./log/">チャットログ閲覧ページ</a></li>
                 <li><a href="#">ユーザー管理（準備中）</a></li>
