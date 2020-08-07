@@ -30,19 +30,19 @@ try{
 //DB登録処理
 $comment = $_POST['comment'];
 $student = $_POST['student'];
-$ta = $_POST['ta'];
-$chatId = $_POST['chatId'];
+$logId = $_POST['logId'];
+$ta = $_SESSION['userId'];
 try{
   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO taComment (student, ta, comment) VALUES (?, ?, ?)');
-  $stmt->execute(array($student, $ta, $comment));
-  $stmt = $pdo->prepare('UPDATE chatLog SET support = 1 where id = ?');
-  $stmt->execute(array($chatId));
+  $stmt = $pdo->prepare('INSERT INTO taComment2020c (student, ta, logId, comment) VALUES (?, ?, ?, ?)');
+  $stmt->execute(array($student, $ta, $logId, $comment));
+  $stmt = $pdo->prepare('UPDATE chatLog2020c SET support = 1 where id = ?');
+  $stmt->execute(array($logId));
 
   $alert = '<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>TA/SA 対応状況の登録が完了しました。</p><p>対応済みに変更しました。</p></div>';
 }catch(PDOException $e){
-
+  $alert ='登録エラーです。やり直してください。';
 }
 
 ?>
@@ -116,6 +116,7 @@ try{
         <article class="box media">
            <div class="media-content">
               <div class="content">
+                 <p><?php echo $alert; ?></p>
                  <p>理解度について</p>
                  <p>理解度に応じてチャットログの背景色を変えています。</p>
                  <span class="tag is-large" style="background:#ee5253">理解度0：全く理解ができていない</span>
@@ -186,19 +187,35 @@ try{
                   try{
                     $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE groupId = ? AND lesson = ? ORDER BY level ASC;');
+                    $stmt = $pdo->prepare('SELECT chatLog2020c.support AS support, chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE groupId = ? AND lesson = ? ORDER BY level ASC;');
                     $stmt->execute(array($groupId, $lesson));
 
                     while ($row = $stmt->fetch()) {
                 ?>
                       <bulma-accordion-item class="level<?php echo nl2br($row['level']); ?>">
                         <div slot="title">
+                          <?php
+                            if(($row['support']) == 1){
+                              echo '<span class="tag is-primary is-medium">対応済み</span>';
+                            }else{
+                              echo '<span class="tag is-danger is-medium">未対応</span>';
+                            }
+                          ?>
                           <p>第<?php echo nl2br($row['lesson']); ?>回 振り返り履歴　ユーザー：<?php echo nl2br($row['name']); ?></p>
                           <p>理解度:<?php echo nl2br($row['level']); ?></p>
                           <p>回答時間：<?php echo $row['timestamp']; ?></p>
                         </div>
                         <div slot="content">
                          <?php echo nl2br($row['logAll']); ?>
+                         <form action="index.php" method="post">
+                           <div class="field">
+                             <label class="label">対応内容</label>
+                             <input type="hidden" name="logId" value="<?php echo $row['id'] ?>" />
+                             <input type="hidden" name="student" value="<?php echo $row['name'] ?>" />
+                             <textarea class="textarea" name="comment" placeholder="対応内容を記述・・・ 教えた内容、学生から言われたことなど。"></textarea>
+                           </div>
+                            <button class="button is-primary">登録</button>
+                         </form>
                        </div>
                       </bulma-accordion-item>
 

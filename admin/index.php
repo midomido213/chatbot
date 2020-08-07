@@ -99,6 +99,14 @@ date_default_timezone_set('Asia/Tokyo');
         </article>
         <article class="box media">
           <div class="media-content">
+            <span class="icon has-text-danger"><i class="fas fa-exclamation-triangle"></i></span>
+            <p>未対応の学生がいます。</p>
+            <p>チャットログ確認ページにアクセスして個別対応をしてください。</p>
+            <p>対応内容はチャットログ確認ページから入力できます。</p>
+          </div>
+        </article>
+        <article class="box media">
+          <div class="media-content">
             <p><strong>管理者限定表示</strong></p>
             <ul class="menu-list">
                 <li><a href="./status/">振り返り状況確認ページ</a></li>
