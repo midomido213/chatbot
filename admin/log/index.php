@@ -30,19 +30,23 @@ try{
 //DB登録処理
 $comment = $_POST['comment'];
 $student = $_POST['student'];
+$support = $_POST['support'];
 $logId = $_POST['logId'];
 $ta = $_SESSION['userId'];
-try{
-  $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $stmt = $pdo->prepare('INSERT INTO taComment2020c (student, ta, logId, comment) VALUES (?, ?, ?, ?)');
-  $stmt->execute(array($student, $ta, $logId, $comment));
-  $stmt = $pdo->prepare('UPDATE chatLog2020c SET support = 1 where id = ?');
-  $stmt->execute(array($logId));
+if(isset($comment)){
+  try{
+    $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-  $alert = '<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>TA/SA 対応状況の登録が完了しました。</p><p>対応済みに変更しました。</p></div>';
-}catch(PDOException $e){
-  $alert ='登録エラーです。やり直してください。';
+    $stmt = $pdo->prepare('INSERT INTO taComment2020c (student, ta, logId, comment) VALUES (?, ?, ?, ?)');
+    $stmt->execute(array($student, $ta, $logId, $comment));
+    $stmt = $pdo->prepare('UPDATE chatLog2020c SET support = ? where id = ?');
+    $stmt->execute(array($support, $logId));
+
+    $alert = '<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>TA/SA 対応状況の登録が完了しました。</p><p>対応済みに変更しました。</p></div>';
+  }catch(PDOException $e){
+    $alert ='登録エラーです。やり直してください。';
+  }
 }
 
 ?>
@@ -168,7 +172,7 @@ try{
                  </select>
                </div>
               </div>
-              <button class="button is-primary">Submit</button>
+              <button class="button is-primary">ログを表示！</button>
            </form>
         </article>
         <article class="box media">
@@ -197,6 +201,8 @@ try{
                           <?php
                             if(($row['support']) == 1){
                               echo '<span class="tag is-primary is-medium">対応済み</span>';
+                            }else if(($row['support']) == 2){
+                              echo '<span class="tag is-link is-medium">対応の必要なしと判断</span>';
                             }else{
                               echo '<span class="tag is-danger is-medium">未対応</span>';
                             }
@@ -212,9 +218,24 @@ try{
                              <label class="label">対応内容</label>
                              <input type="hidden" name="logId" value="<?php echo $row['id'] ?>" />
                              <input type="hidden" name="student" value="<?php echo $row['name'] ?>" />
+                             <input type="hidden" name="support" value="1" />
+                             <input type="hidden" name="group" value="<?php echo $_POST['group'] ?>" />
+                             <input type="hidden" name="lesson" value="<?php echo $_POST['lesson'] ?>" />
                              <textarea class="textarea" name="comment" placeholder="対応内容を記述・・・ 教えた内容、学生から言われたことなど。"></textarea>
                            </div>
                             <button class="button is-primary">登録</button>
+                         </form>
+                         <form action="index.php" method="post">
+                           <div class="field">
+                             <label class="label">対応の必要がない学生の場合以下のボタンを押してください</label>
+                             <input type="hidden" name="logId" value="<?php echo $row['id'] ?>" />
+                             <input type="hidden" name="student" value="<?php echo $row['name'] ?>" />
+                             <input type="hidden" name="support" value="2" />
+                             <input type="hidden" name="group" value="<?php echo $_POST['group'] ?>" />
+                             <input type="hidden" name="lesson" value="<?php echo $_POST['lesson'] ?>" />
+                             <input type="hidden" name="comment" value=" " />
+                           </div>
+                            <button class="button is-link">チャットログを確認し、個別対応の必要なしと判断</button>
                          </form>
                        </div>
                       </bulma-accordion-item>
