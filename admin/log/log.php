@@ -186,7 +186,7 @@ try{
                   try{
                     $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE lesson = ? ORDER BY level > 0 DESC, level ASC;');
+                    $stmt = $pdo->prepare('SELECT chatLog2020c.id AS id, chatLog2020c.name AS name, chatLog2020c.lesson AS lesson, chatLog2020c.level AS level, chatLog2020c.logAll AS logAll, chatLog2020c.timestamp AS timestamp, groupData2020c.userName AS name, groupData2020c.groupId AS groupId FROM chatLog2020c INNER JOIN groupData2020c ON groupData2020c.userName = chatLog2020c.name  WHERE lesson = ? ORDER BY level ASC;');
                     $stmt->execute(array($lesson));
 
                     while ($row = $stmt->fetch()) {
