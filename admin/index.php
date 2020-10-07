@@ -95,22 +95,22 @@ date_default_timezone_set('Asia/Tokyo');
             <p><strong>このシステムの利用方法について</strong></p>
             <p>チャットログ閲覧ページを確認し、分からない箇所について記述している学生については内容について指導してください。</p>
             <p>理解度に応じてチャットログの色が変わっています。参考にしてください。</p>
+            <p>システム操作マニュアルについて準備中です。後日掲載する予定です。</p>
           </div>
         </article>
-        <article class="box media">
+        <!-- <article class="box media">
           <div class="media-content">
             <span class="icon has-text-danger"><i class="fas fa-exclamation-triangle"></i></span>
             <p>未対応の学生がいます。</p>
             <p>チャットログ確認ページにアクセスして個別対応をしてください。</p>
             <p>対応内容はチャットログ確認ページから入力できます。</p>
           </div>
-        </article>
+        </article> -->
         <article class="box media">
           <div class="media-content">
             <p><strong>管理者限定表示</strong></p>
             <ul class="menu-list">
                 <li><a href="./status/">振り返り状況確認ページ</a></li>
-                <li><a href="./exam/">確認テスト・再テスト 点数確認ページ</a></li>
                 <li><a href="./log/">チャットログ閲覧ページ</a></li>
                 <li><a href="#">ユーザー管理（準備中）</a></li>
              </ul>
@@ -119,23 +119,22 @@ date_default_timezone_set('Asia/Tokyo');
         <article class="box media">
            <div class="media-content">
               <div class="content">
-                 <p><strong>チャットボットページ確認用</strong></p>
+                 <p><strong>チャットボットページ確認用（２０２０年度Ｂ）</strong></p>
+                 <p>各回の動作確認用です。</p>
                  <ul class="menu-list">
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/1.php">第1回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/2.php">第2回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/3.php">第3回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/4.php">第4回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/5.php">第5回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/6.php">第6回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/7.php">第7回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/8.php">第8回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/9.php">第9回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/10.php">第10回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/11.php">第11回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/12.php">第12回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/13.php">第13回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/14.php">第14回</a></p></li>
-                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020c/bot/15.php">第15回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/2.php">第2回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/3.php">第3回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/4.php">第4回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/5.php">第5回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/6.php">第6回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/7.php">第7回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/8.php">第8回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/9.php">第9回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/10.php">第10回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/11.php">第11回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/12.php">第12回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/13.php">第13回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/14.php">第14回</a></p></li>
                  </ul>
               </div>
            </div>
