@@ -48,7 +48,7 @@ init();
 
 // ishiのDB関数
 function ishiDb(targetScore, actualScore, satisfaction, reflection){
-  var date = new Date(2020, 9, 7, 0, 0, 0, 0); // 月は0~11
+  var date = new Date(2020, 9, 8, 0, 0, 0, 0); // 月は0~11
   classDate = date.getTime();
   var xhr = new XMLHttpRequest();
   xhr.open('POST', ishi_db, true);
@@ -139,7 +139,7 @@ function init(){
           case 'yes':
             log = 'はい';
             addHuman(log);
-            repoTime();
+            repoStudy();
             break;
           case 'no':
             log = 'いいえ';
@@ -176,7 +176,7 @@ function angry(){
           case 'yes':
             log = 'はい';
             addHuman(log);
-            repoTime();
+            repoStudy();
             break;
           case 'no':
             log = 'いいえ';
@@ -215,7 +215,7 @@ function angry(){
             case 'yes':
               log = 'はい';
               addHuman(log);
-              repoTime();
+              repoStudy();
               break;
             case 'no':
               log = 'いいえ';
@@ -231,26 +231,26 @@ function angry(){
 }
 
 //学習レポートの内容
-function repoTime(){
-  botui.message.add({
-    delay:100,
-    loading:true,
-    content:'第２回の授業内容の学習に要した時間を分単位で記入してね。'
-  }).then(function(){
-    log = '第２回の授業内容の学習に要した時間を分単位で記入してね。';
-    addBot(log);
-    return botui.action.text({
-      delay:10,
-      action:{
-        placeholder:'例：60'
-      }
-    }).then(function(res){
-      addHuman(res.value);
-      repoTimeIs = res.value;
-      repoStudy();
-    });
-  });
-}
+// function repoTime(){
+//   botui.message.add({
+//     delay:100,
+//     loading:true,
+//     content:'第２回の授業内容の学習に要した時間を分単位で記入してね。'
+//   }).then(function(){
+//     log = '第２回の授業内容の学習に要した時間を分単位で記入してね。';
+//     addBot(log);
+//     return botui.action.text({
+//       delay:10,
+//       action:{
+//         placeholder:'例：60'
+//       }
+//     }).then(function(res){
+//       addHuman(res.value);
+//       repoTimeIs = res.value;
+//       repoStudy();
+//     });
+//   });
+// }
 
 function repoStudy(){
   botui.message.add({
@@ -265,8 +265,7 @@ function repoStudy(){
       delay:10,
       action:[
         {icon:'fas fa-circle', text:'はい', value:'yes'},
-        {icon:'times', text:'いいえ', value:'no'},
-        {icon:'undo', text:'戻る', value:'undo'}
+        {icon:'times', text:'いいえ', value:'no'}
       ]
     }).then(function(res){
       botui.action.hide();
@@ -284,7 +283,7 @@ function repoStudy(){
         case 'undo':
           log = '戻る';
           addHuman(log);
-          repoTime();
+          repoStudy();
           break;
         default:quit();
       }
@@ -376,12 +375,6 @@ function repoCheck(){
     content:'回答の確認をします。'
   }).then(function(){
     log = '回答の確認をします。<br>';
-    botui.message.add({
-      delay:10,
-      loading:true,
-      content:'学習時間：' + repoTimeIs + '分'
-    }).then(function(){
-      log += '学習時間：' + repoTimeIs + '分<br>';
       botui.message.add({
         delay:10,
         loading:true,
@@ -402,7 +395,6 @@ function repoCheck(){
             log += '事前テスト点数：'　+ correct + '点';
             addBot(log);
             repoEnd();
-          });
         });
       });
     });
@@ -453,7 +445,7 @@ function repoEnd(){
             addBot(log);
             exam.length = 0;
             reExam.length = 0;
-            repoTime();
+            repoStudy();
           });
           break;
       }

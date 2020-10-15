@@ -121,13 +121,19 @@ try{
                     <tr>
                       <th><abbr title="user">ユーザー名</abbr></th>
                       <th><abbr title="group">グループ</abbr></th>
+                      <th><abbr title="nine">第２回</abbr></th>
+                      <th><abbr title="nine">第３回</abbr></th>
+                      <th><abbr title="nine">第４回</abbr></th>
+                      <th><abbr title="nine">第５回</abbr></th>
+                      <th><abbr title="nine">第６回</abbr></th>
+                      <th><abbr title="nine">第７回</abbr></th>
+                      <th><abbr title="nine">第８回</abbr></th>
                       <th><abbr title="nine">第９回</abbr></th>
                       <th><abbr title="ten">第１０回</abbr></th>
                       <th><abbr title="eleven">第１１回</abbr></th>
                       <th><abbr title="twelve">第１２回</abbr></th>
                       <th><abbr title="thirteen">第１３回</abbr></th>
                       <th><abbr title="fourteen">第１４回</abbr></th>
-                      <th><abbr title="fifteen">第１５回</abbr></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,21 +143,28 @@ try{
                       try{
                         $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-                        $stmt = $pdo->prepare('SELECT * FROM status2020c INNER JOIN groupData2020c ON status2020c.name = groupData2020c.userName ORDER BY groupData2020c.id;');
+                        $stmt = $pdo->prepare('SELECT * FROM status INNER JOIN groupData ON status.groupId = groupData.id ORDER BY groupData.id;');
                         $stmt->execute();
 
                         while ($row = $stmt->fetch()) {
+                          $arr = str_split($row['status']);
                     ?>
                     <tr>
-                      <th><?php echo nl2br($row['name']); ?></th>
+                      <th><?php echo nl2br($row['userName']); ?></th>
                       <th>グループ<?php echo nl2br($row['groupId']); ?></th>
-                      <td><?php if($row['nine'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['ten'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['eleven'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['twelve'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['thirteen'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['fourteen'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
-                      <td><?php if($row['fifteen'] == 1){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[0] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[1] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[2] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[3] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[4] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[5] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[6] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[7] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[8] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[9] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[10] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[11] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
+                      <td><?php if($arr[12] == '1'){echo '済';}else{echo '<font color="red">未登録</font>';} ?></td>
                     </tr>
                     <?php
                           }
