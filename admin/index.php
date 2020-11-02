@@ -136,6 +136,7 @@ date_default_timezone_set('Asia/Tokyo');
                    <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/12.php">第12回</a></p></li>
                    <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/13.php">第13回</a></p></li>
                    <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/14.php">第14回</a></p></li>
+                   <li><p><a href="https://tkg-lab.tk/chatbot/page/lesson/2020b/bot/test.php">テストページ</a></p></li>
                  </ul>
               </div>
            </div>
